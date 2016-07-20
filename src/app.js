@@ -121,8 +121,8 @@ function processEvent(event) {
                             let category = parameters.category;
                             let city = parameters.city;
 
-                            let url = "https://eimi.io/dirdb.php?category="+category+"&city="+city;
-                            console.log("url: "+url);
+                            let placeUrl = "https://eimi.io/dirdb.php?category="+category+"&city="+city;
+                            console.log("PlaceUrl: "+placeUrl);
                             requestify.get(url)
                             .then(function(response) {
                                 //response = JSON.parse(response);
