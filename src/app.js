@@ -117,6 +117,8 @@ function processEvent(event) {
 
                         }else if(action == "bibleSearch"){
                             sendFBMessage(sender,{text: "bible search"});
+                        }else if(action == "fetchPlace"){
+                            sendFBMessage(sender,{text: "citylink accessed"});
                         }else{
                             sendFBMessage(sender,{text: responseText});
                         }
