@@ -45,7 +45,6 @@ function processEvent(event) {
                 let isActionNotComplete = response.result.actionIncomplete;
                 let parameters = response.result.parameters;
 
-                console.log("action: "+action);
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
                     try {
@@ -63,6 +62,7 @@ function processEvent(event) {
                     //     sendFBMessage(sender, {text: textPart}, callback);
                     // });
                     if(isActionNotComplete == false){
+                        console.log("action: "+action);
                         if(action == "sermonSearch"){
 
                             var weekArr = ['1st','2nd','3rd','4th','5th','first','second','third','fourth','fifth'];
