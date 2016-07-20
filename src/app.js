@@ -121,7 +121,7 @@ function processEvent(event) {
                             let city = parameters.city;
 
                             let url = "https://eimi.io/dirdb.php?category="+category+"&city="+city;
-
+                            console.log(url);
                             requestify.get(url)
                             .then(function(response) {
                                 if(response.length>0){
