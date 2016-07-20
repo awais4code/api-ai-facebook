@@ -173,7 +173,11 @@ function processEvent(event) {
                                 }
                             });
                         }else if(action == "getVerse"){
-                            sendFBMessage(sender,{text: "Verse of the day"});
+                            requestify.get("https://eimi.io/getverse.php")
+                            .then(function(response) {
+                                response = response.getBody();
+                                sendFBMessage(sender,{text: response});  
+                            });
                         }else{
                             sendFBMessage(sender,{text: responseText});
                         }
