@@ -124,30 +124,29 @@ function processEvent(event) {
                             console.log("city: "+city);
                             requestify.get("https://eimi.io/dirdb.php?category="+category+"&city="+city)
                             .then(function(response) {
-                                let responseArr = JSON.parse(response);
+                                let responseArr = response.getBody();
                                 console.log("length: "+responseArr.length);
                                 if(responseArr.length>0){
-                                    sendFBMessage(sender,{text: "Result found"});
-                                    // for (var i = 0; i < responseArr.length; i++) {
+                                    for (var i = 0; i < responseArr.length; i++) {
                                         
-                                    //     var obj = responseArr[i];
+                                        var obj = responseArr[i];
                                     
-                                    //     var content = "";
-                                    //     content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
-                                    //     if(obj.web.length>1){
-                                    //         content += "Web: "+obj.web+"\n";
-                                    //     }
-                                    //     if(obj.fb.length>1){
-                                    //         content += "Facebook : "+obj.fb+"\n";
-                                    //     }
-                                    //     if(obj.twt.length>1){
-                                    //         content += "Twitter : "+obj.twt+"\n";
-                                    //     }
-                                    //     if(obj.media.length>1){
-                                    //         content += "Media : "+obj.media+"\n";
-                                    //     }
-                                    //     sendFBMessage(sender,{text: content});
-                                    // }
+                                        var content = "";
+                                        content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
+                                        if(obj.web.length>1){
+                                            content += "Web: "+obj.web+"\n";
+                                        }
+                                        if(obj.fb.length>1){
+                                            content += "Facebook : "+obj.fb+"\n";
+                                        }
+                                        if(obj.twt.length>1){
+                                            content += "Twitter : "+obj.twt+"\n";
+                                        }
+                                        if(obj.media.length>1){
+                                            content += "Media : "+obj.media+"\n";
+                                        }
+                                        sendFBMessage(sender,{text: content});
+                                    }
                                 }else{
                                     sendFBMessage(sender,{text: "No Result Found"});
                                 }
