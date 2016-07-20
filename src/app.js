@@ -45,8 +45,7 @@ function processEvent(event) {
                 let isActionNotComplete = response.result.actionIncomplete;
                 let parameters = response.result.parameters;
 
-                console.log(responseText);
-                console.log(responseData);
+                console.log("action: "+action);
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
                     try {
@@ -56,7 +55,6 @@ function processEvent(event) {
                         sendFBMessage(sender, {text: err.message });
                     }
                 } else if (isDefined(responseText)) {
-                    console.log('Response as text message');
                     // facebook API limit for text length is 320,
                     // so we split message if needed
                     //var splittedText = splitResponse(responseText);
@@ -116,7 +114,7 @@ function processEvent(event) {
                             });
 
                         }else if(action == "initDir"){
-
+                            console.log("In initDir");
                             let category = parameters.category;
                             let city = parameters.city;
 
