@@ -115,7 +115,7 @@ function processEvent(event) {
                                   }
                             });
 
-                        }else if(action == "searchbible"){
+                        }else if(action == "bibleSearch"){
                             sendFBMessage(sender,{text: "bible search"});
                         }else{
                             sendFBMessage(sender,{text: responseText});
