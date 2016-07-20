@@ -63,6 +63,7 @@ function processEvent(event) {
                     //     sendFBMessage(sender, {text: textPart}, callback);
                     // });
                     if(isActionNotComplete == false){
+
                         console.log("action: "+action);
                         if(action == "sermonSearch"){
 
@@ -115,37 +116,7 @@ function processEvent(event) {
                             });
 
                         }else if(action == "initDir"){
-                            console.log("In initDir");
-                            let category = parameters.category;
-                            let city = parameters.city;
-
-                            let url = "https://eimi.io/dirdb.php?category="+category+"&city="+city;
-                            console.log("url: "+url);
-                            requestify.get(url)
-                            .then(function(response) {
-                                if(response.length>0){
-                                    response.forEach(function(obj) {
-                                        var content = "";
-                                        content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
-                                        if(obj.web.length>1){
-                                            content += "Web: "+obj.web+"\n";
-                                        }
-                                        if(obj.fb.length>1){
-                                            content += "Facebook : "+obj.fb+"\n";
-                                        }
-                                        if(obj.twt.length>1){
-                                            content += "Twitter : "+obj.twt+"\n";
-                                        }
-                                        if(obj.media.length>1){
-                                            content += "Media : "+obj.media+"\n";
-                                        }
-                                        sendFBMessage(sender,{text: content});
-                                    });
-                                }else{
-                                    sendFBMessage(sender,{text: "No Result Found"});
-                                }
-                            });
-
+                            sendFBMessage(sender,{text: "initDir"});
                         }else{
                             sendFBMessage(sender,{text: responseText});
                         }
