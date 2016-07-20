@@ -125,6 +125,7 @@ function processEvent(event) {
                             console.log("url: "+url);
                             requestify.get(url)
                             .then(function(response) {
+                                response = JSON.parse(response);
                                 if(response.length>0){
                                     response.forEach(function(obj) {
                                         var content = "";
