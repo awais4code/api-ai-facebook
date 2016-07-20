@@ -99,7 +99,7 @@ function processEvent(event) {
                                 }
                             };
 
-                            var url = "https://eimi.io/sermondb.php?cruchorspeaker="+sermon+"&month="+month+"&week="+week+"&year="+year+"&audioorvideo="+mediaType;
+                            let url = "https://eimi.io/sermondb.php?cruchorspeaker="+sermon+"&month="+month+"&week="+week+"&year="+year+"&audioorvideo="+mediaType;
 
                             console.log("Url: "+url);
 
@@ -111,12 +111,44 @@ function processEvent(event) {
                                     sendFBMessage(sender,{text: "No result found"});
                                   }else{
                                     response = response.replace(",,","");
-                                    sendFBMessage(sender,{text: "Click it to access audio: \n"+response});
+                                    sendFBMessage(sender,{text: "Click it to access media: \n"+response});
                                   }
                             });
 
+                        }else if(action == "initDir"){
+
+                            let category = parameters.category;
+                            let city = parameters.city;
+
+                            let url = "https://eimi.io/dirdb.php?category="+category+"&city="+city;
+
+                            requestify.get(url)
+                            .then(function(response) {
+                                if(response.length>0){
+                                    response.forEach(function(obj) {
+                                        var content = "";
+                                        content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
+                                        if(obj.web.length>1){
+                                            content += "Web: "+obj.web+"\n";
+                                        }
+                                        if(obj.fb.length>1){
+                                            content += "Facebook : "+obj.fb+"\n";
+                                        }
+                                        if(obj.twt.length>1){
+                                            content += "Twitter : "+obj.twt+"\n";
+                                        }
+                                        if(obj.media.length>1){
+                                            content += "Media : "+obj.media+"\n";
+                                        }
+                                        sendFBMessage(sender,{text: content});
+                                    });
+                                }else{
+                                    sendFBMessage(sender,{text: "No Result Found"});
+                                }
+                            });
+
                         }else{
-                            sendFBMessage(sender,{text: responseText})
+                            sendFBMessage(sender,{text: responseText});
                         }
                     }else{
                         sendFBMessage(sender,{text: responseText});
