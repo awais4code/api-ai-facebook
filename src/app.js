@@ -120,10 +120,9 @@ function processEvent(event) {
                         }else if(action == "fetchPlace"){
                             let category = parameters.category;
                             let city = parameters.city;
-
-                            let placeUrl = "https://eimi.io/dirdb.php?category="+category+"&city="+city;
-                            console.log("PlaceUrl: "+placeUrl);
-                            requestify.get(url)
+                            console.log("category: "+category);
+                            console.log("city: "+city);
+                            requestify.get("https://eimi.io/dirdb.php?category="+category+"&city="+city)
                             .then(function(response) {
                                 //response = JSON.parse(response);
                                 if(response.length>0){
