@@ -124,7 +124,7 @@ function processEvent(event) {
                             console.log("city: "+city);
                             requestify.get("https://eimi.io/dirdb.php?category="+category+"&city="+city)
                             .then(function(response) {
-                                let responseArr = response.getBody();
+                                let responseArr = JSON.parse(response.getBody());
                                 console.log("length: "+responseArr.length);
                                 if(responseArr.length>0){
                                     for (var i = 0; i < responseArr.length; i++) {
