@@ -168,6 +168,8 @@ function processEvent(event) {
                                         }
                                         sendFBMessage(sender,{text: content});
                                     }
+                                }else if(action == "getVerse"){
+                                    sendFBMessage(sender,{text: "Verse of the day"});
                                 }else{
                                     sendFBMessage(sender,{text: "No Result Found"});
                                 }
