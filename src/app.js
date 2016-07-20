@@ -130,7 +130,11 @@ function processEvent(event) {
                                   if(response.length<1){
                                     sendFBMessage(sender,{text: "No result found"});
                                   }else{
-                                    sendFBMessage(sender,{text:"response"});
+                                    var splittedText = splitResponse(response);
+
+                                    async.eachSeries(splittedText, (textPart, callback) => {
+                                        sendFBMessage(sender, {text: textPart}, callback);
+                                    });
                                   }
                             });
 
