@@ -127,7 +127,10 @@ function processEvent(event) {
                                 let responseArr = JSON.parse(response);
                                 console.log("length: "+responseArr.length);
                                 if(responseArr.length>0){
-                                    responseArr.forEach(function(obj) {
+                                    for (var i = 0; i < responseArr.length; i++) {
+                                        
+                                        var obj = responseArr[i];
+                                    
                                         var content = "";
                                         content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
                                         if(obj.web.length>1){
@@ -143,7 +146,7 @@ function processEvent(event) {
                                             content += "Media : "+obj.media+"\n";
                                         }
                                         sendFBMessage(sender,{text: content});
-                                    });
+                                    }
                                 }else{
                                     sendFBMessage(sender,{text: "No Result Found"});
                                 }
