@@ -130,7 +130,7 @@ function processEvent(event) {
                                   if(response.length<1){
                                     sendFBMessage(sender,{text: "No result found"});
                                   }else{
-                                    sendFBMessage(sender,{text:response});
+                                    sendFBMessage(sender,{text:"response"});
                                   }
                             });
 
