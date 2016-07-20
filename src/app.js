@@ -29,7 +29,7 @@ function processEvent(event) {
             sessionIds.set(sender, uuid.v1());
         }
 
-        console.log("Text", text);
+       // console.log("Text", text);
 
         let apiaiRequest = apiAiService.textRequest(text,
             {
@@ -49,7 +49,7 @@ function processEvent(event) {
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
                     try {
-                        console.log('Response as formatted message');
+                       // console.log('Response as formatted message');
                         sendFBMessage(sender, responseData.facebook);
                     } catch (err) {
                         sendFBMessage(sender, {text: err.message });
@@ -64,7 +64,7 @@ function processEvent(event) {
                     // });
                     if(!isActionNotComplete){
 
-                        console.log("action: "+action);
+                    //    console.log("action: "+action);
                         // if(action == "sermonSearch"){
 
                         //     var weekArr = ['1st','2nd','3rd','4th','5th','first','second','third','fourth','fifth'];
