@@ -114,7 +114,7 @@ function processEvent(event) {
                         //             sendFBMessage(sender,{text: "Click it to access media: \n"+response});
                         //           }
                         //     });
-                        if(action == "initDir"){
+                        if(action == "sample"){
                             sendFBMessage(sender,{text: "initDir"});
                         }else{
                             sendFBMessage(sender,{text: responseText});
