@@ -44,7 +44,7 @@ function processEvent(event) {
                 let action = response.result.action;
                 let isActionNotComplete = response.result.actionIncomplete;
                 let parameters = response.result.parameters;
-                console.log("bool: "text+":"+isActionNotComplete);
+                console.log("bool: "+text+":"+isActionNotComplete);
 
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
