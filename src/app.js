@@ -29,7 +29,7 @@ function processEvent(event) {
             sessionIds.set(sender, uuid.v1());
         }
 
-       // console.log("Text", text);
+        console.log("Text", text);
 
         let apiaiRequest = apiAiService.textRequest(text,
             {
@@ -44,12 +44,12 @@ function processEvent(event) {
                 let action = response.result.action;
                 let isActionNotComplete = response.result.actionIncomplete;
                 let parameters = response.result.parameters;
-                console.log("bool: "+text+":"+isActionNotComplete);
+                console.log("bool: "+isActionNotComplete);
 
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
                     try {
-                       // console.log('Response as formatted message');
+                        console.log('Response as formatted message');
                         sendFBMessage(sender, responseData.facebook);
                     } catch (err) {
                         sendFBMessage(sender, {text: err.message });
@@ -62,60 +62,61 @@ function processEvent(event) {
                     // async.eachSeries(splittedText, (textPart, callback) => {
                     //     sendFBMessage(sender, {text: textPart}, callback);
                     // });
-                    if(!isActionNotComplete){
+                    if(isActionNotComplete == false){
 
-                    //    console.log("action: "+action);
-                        // if(action == "sermonSearch"){
+                        console.log("action: "+action);
+                        if(action == "sermonSearch"){
 
-                        //     var weekArr = ['1st','2nd','3rd','4th','5th','first','second','third','fourth','fifth'];
-                        //     var monthArr = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-                        //     var yearArr = ['2012','2013','2014','2015','2016'];
+                            var weekArr = ['1st','2nd','3rd','4th','5th','first','second','third','fourth','fifth'];
+                            var monthArr = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+                            var yearArr = ['2012','2013','2014','2015','2016'];
 
-                        //     let sermon = parameters.sermonName;
-                        //     let date = parameters.date;
-                        //     let mediaType = parameters.mediaType;
-                        //     var week,month,year;
+                            let sermon = parameters.sermonName;
+                            let date = parameters.date;
+                            let mediaType = parameters.mediaType;
+                            var week,month,year;
 
-                        //     var res = date.split(" ");
-                        //     for (var i = 0; i < res.length; i++) {
-                        //         var x = res[i].toLowerCase();
-                        //         if(weekArr.indexOf(x) != -1 ){
-                        //             week = x;
-                        //             if(week == "first"){
-                        //                 week = "1st";
-                        //             }else if(week == "second"){
-                        //                 week = "2nd";
-                        //             }else if(week == "third"){
-                        //                 week = "3rd";
-                        //             }else if(week == "fourth"){
-                        //                 week = "4th";
-                        //             }else if(week == "fifth"){
-                        //                 week = "5th";
-                        //             }
-                        //         }else if(monthArr.indexOf(x) != -1 ){
-                        //             month = x;
-                        //         }else if(yearArr.indexOf(x) != -1 ){
-                        //             year = x;
-                        //         }
-                        //     };
+                            var res = date.split(" ");
+                            for (var i = 0; i < res.length; i++) {
+                                var x = res[i].toLowerCase();
+                                if(weekArr.indexOf(x) != -1 ){
+                                    week = x;
+                                    if(week == "first"){
+                                        week = "1st";
+                                    }else if(week == "second"){
+                                        week = "2nd";
+                                    }else if(week == "third"){
+                                        week = "3rd";
+                                    }else if(week == "fourth"){
+                                        week = "4th";
+                                    }else if(week == "fifth"){
+                                        week = "5th";
+                                    }
+                                }else if(monthArr.indexOf(x) != -1 ){
+                                    month = x;
+                                }else if(yearArr.indexOf(x) != -1 ){
+                                    year = x;
+                                }
+                            };
 
-                        //     let url = "https://eimi.io/sermondb.php?cruchorspeaker="+sermon+"&month="+month+"&week="+week+"&year="+year+"&audioorvideo="+mediaType;
+                            let url = "https://eimi.io/sermondb.php?cruchorspeaker="+sermon+"&month="+month+"&week="+week+"&year="+year+"&audioorvideo="+mediaType;
 
-                        //     console.log("Url: "+url);
+                            console.log("Url: "+url);
 
-                        //     requestify.get(url)
-                        //     .then(function(response) {
-                        //           var response = response.getBody();
-                        //           response = response.trim();
-                        //           if(response=="nulli"){
-                        //             sendFBMessage(sender,{text: "No result found"});
-                        //           }else{
-                        //             response = response.replace(",,","");
-                        //             sendFBMessage(sender,{text: "Click it to access media: \n"+response});
-                        //           }
-                        //     });
-                        if(action == "bibleSearch"){
-                            sendFBMessage(sender,{text: "initDir"});
+                            requestify.get(url)
+                            .then(function(response) {
+                                  var response = response.getBody();
+                                  response = response.trim();
+                                  if(response=="nulli"){
+                                    sendFBMessage(sender,{text: "No result found"});
+                                  }else{
+                                    response = response.replace(",,","");
+                                    sendFBMessage(sender,{text: "Click it to access media: \n"+response});
+                                  }
+                            });
+
+                        }else if(action == "searchbible"){
+                            sendFBMessage(sender,{text: "bible search"});
                         }else{
                             sendFBMessage(sender,{text: responseText});
                         }
