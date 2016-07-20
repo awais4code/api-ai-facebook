@@ -62,7 +62,7 @@ function processEvent(event) {
                     // async.eachSeries(splittedText, (textPart, callback) => {
                     //     sendFBMessage(sender, {text: textPart}, callback);
                     // });
-                    if(isActionNotComplete == false){
+                    if(isActionNotComplete){
 
                         console.log("action: "+action);
                         // if(action == "sermonSearch"){
