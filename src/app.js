@@ -124,9 +124,10 @@ function processEvent(event) {
                             console.log("city: "+city);
                             requestify.get("https://eimi.io/dirdb.php?category="+category+"&city="+city)
                             .then(function(response) {
-                                //response = JSON.parse(response);
-                                if(response.length>0){
-                                    response.forEach(function(obj) {
+                                let responseArr = JSON.parse(response);
+                                console.log("length: "+responseArr.length);
+                                if(responseArr.length>0){
+                                    responseArr.forEach(function(obj) {
                                         var content = "";
                                         content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
                                         if(obj.web.length>1){
