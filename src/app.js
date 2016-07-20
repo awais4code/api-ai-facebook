@@ -116,7 +116,24 @@ function processEvent(event) {
                             });
 
                         }else if(action == "bibleSearch"){
-                            sendFBMessage(sender,{text: "bible search"});
+                            
+                            let version = parameters.version;
+                            let passage = parameters.passage;
+
+                            let url = "https://eimi.io/biblesearch.php?passage="+passage+"&version="+version;
+
+                            console.log("Bible Url",url);
+
+                            requestify.get(url)
+                            .then(function(response) {
+                                  response = response.getBody();
+                                  if(response.length<1){
+                                    sendFBMessage(sender,{text: "No result found"});
+                                  }else{
+                                    sendFBMessage(sender,{text:response});
+                                  }
+                            });
+
                         }else if(action == "fetchPlace"){
                             let category = parameters.category;
                             let city = parameters.city;
