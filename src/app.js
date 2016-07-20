@@ -114,7 +114,7 @@ function processEvent(event) {
                         //             sendFBMessage(sender,{text: "Click it to access media: \n"+response});
                         //           }
                         //     });
-                        if(action == "sermonSearch"){
+                        if(action == "initDir"){
                             sendFBMessage(sender,{text: "initDir"});
                         }else{
                             sendFBMessage(sender,{text: responseText});
