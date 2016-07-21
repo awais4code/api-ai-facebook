@@ -364,7 +364,7 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
                   {
                     // let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' and its votes are '"+response.imdbVotes+"'";
                     title:movObj.Title,
-                    image_url:'http://ia.media-imdb.com/images/M/MV5BYmM5MGNiYWEtZTY3MS00ODQ2LTgwNzQtNmRkMTEwZWFhYzA0XkEyXkFqcGdeQXVyMjExNjgyMTc@._V1_SX300.jpg',
+                    image_url:movObj.Poster,
                     subtitle:'Rated: '+movObj.Rated
                   }
                 ]
