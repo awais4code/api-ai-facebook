@@ -19,21 +19,20 @@ const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSou
 const sessionIds = new Map();
 
 function isMathEq(query) {
-    var isMathEq = false;
+
     if(query.indexOf('+') != -1)
     {
-        isMathEq = true;
+        return true;
     }else if(query.indexOf('-') != -1){
-        isMathEq = true;
+        return true;
     }else if(query.indexOf('*') != -1){
-        isMathEq = true;
+        return true;
     }else if(query.indexOf('/') != -1){
-        isMathEq = true;
+        return true;
     }else if(query.indexOf('^') != -1){
-        isMathEq = true;
+        return true;
     }
-    console.log("bool:"+isMathEq);
-    return isMathEq;
+    return false;
 }
 
 function processEvent(event) {
@@ -213,7 +212,7 @@ function processEvent(event) {
                         // }
                         sendFBMessage(sender,{text: "response1"});
                     }else{
-                        if(isMathEq("3+5=6")){
+                        if(isMathEq("3x+5=6")){
                             // console.log("Math Eq");
                             // requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
                             // .then(function(response) {
