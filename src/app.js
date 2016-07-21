@@ -18,6 +18,23 @@ const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
 const sessionIds = new Map();
 
+function isMathEq(query) {
+    var isMathEq = false;
+    if(query.indexOf('+') != -1)
+    {
+        isMathEq = true;
+    }else if(query.indexOf('-') != -1){
+        isMathEq = true;
+    }else if(query.indexOf('*') != -1){
+        isMathEq = true;
+    }else if(query.indexOf('/') != -1){
+        isMathEq = true;
+    }else if(query.indexOf('^') != -1){
+        isMathEq = true;
+    }
+    return isMathEq;
+}
+
 function processEvent(event) {
     var sender = event.sender.id.toString();
 
@@ -193,11 +210,19 @@ function processEvent(event) {
                             });
                         }
                     }else{
-                        let splittedText = splitResponse(responseText);
+                        if(isMathEq){
+                            requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
+                            .then(function(response) {
+                                response = response.getBody();
+                                sendFBMessage(sender,{text: response});  
+                            });
+                        }else{
+                            let splittedText = splitResponse(responseText);
 
-                        async.eachSeries(splittedText, (textPart, callback) => {
-                            sendFBMessage(sender, {text: textPart}, callback);
-                        });
+                            async.eachSeries(splittedText, (textPart, callback) => {
+                                sendFBMessage(sender, {text: textPart}, callback);
+                            });
+                        }
                     }
                 }
 
