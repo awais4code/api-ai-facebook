@@ -319,7 +319,7 @@ function sendFBTemplateMessage(sender, url, callback) {
                 elements:[
                   {
                     title:'Welcome to Eimi',
-                    image_url:'http://petersapparel.parseapp.com/img/item100-thumb.png',
+                    image_url:'https://eimi.io/img/church_logo.jpg',
                     subtitle:'We got the sermon that you want to listen.',
                     buttons:[
                       {
