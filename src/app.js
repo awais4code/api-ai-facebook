@@ -213,7 +213,7 @@ function processEvent(event) {
                     }else{
                         if(isMathEq("3x+5=10")){
                             console.log("Math Eq");
-                            requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
+                            requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q=3x%2B5%3D6")
                             .then(function(response) {
                                 response = response.getBody();
                                 sendFBMessage(sender,{text: response});  
