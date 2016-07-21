@@ -44,6 +44,7 @@ function processEvent(event) {
                 let action = response.result.action;
                 let isActionNotComplete = response.result.actionIncomplete;
                 let parameters = response.result.parameters;
+                let resolvedQuery = response.result.resolvedQuery;
 
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
@@ -174,6 +175,12 @@ function processEvent(event) {
                             });
                         }else if(action == "getVerse"){
                             requestify.get("https://eimi.io/getverse.php")
+                            .then(function(response) {
+                                response = response.getBody();
+                                sendFBMessage(sender,{text: response});  
+                            });
+                        }else if(action == "getPlanetsCal"){
+                            requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+resolvedQuery)
                             .then(function(response) {
                                 response = response.getBody();
                                 sendFBMessage(sender,{text: response});  
