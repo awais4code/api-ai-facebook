@@ -204,6 +204,9 @@ function processEvent(event) {
                             
                             sendFBMovieTemplateMessage(sender,response);  
                         });
+                    }else if(action == ""){
+                        let topic = parameters.topic;
+                        sendFBMessage(sender, {text: topic});
                     }else{
                         let splittedText = splitResponse(responseText);
 
@@ -362,7 +365,6 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
                 template_type:'generic',
                 elements:[
                   {
-                    // let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' and its votes are '"+response.imdbVotes+"'";
                     title:movObj.Title,
                     image_url:movObj.Poster,
                     subtitle:'Rated: "'+movObj.Rated+'" Metascore: "'+movObj.Metascore+'" Rating: "'+movObj.imdbRating+'" Votes: "'+movObj.imdbVotes+'"'
