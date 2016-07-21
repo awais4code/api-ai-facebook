@@ -44,7 +44,6 @@ function processEvent(event) {
                 let action = response.result.action;
                 let isActionNotComplete = response.result.actionIncomplete;
                 let parameters = response.result.parameters;
-                console.log("bool: "+isActionNotComplete);
 
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
@@ -62,6 +61,7 @@ function processEvent(event) {
                     // async.eachSeries(splittedText, (textPart, callback) => {
                     //     sendFBMessage(sender, {text: textPart}, callback);
                     // });
+                    console.log("Response: "+responseText);
                     if(isActionNotComplete == false){
 
                         console.log("action: "+action);
