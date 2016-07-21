@@ -210,7 +210,7 @@ function processEvent(event) {
                             });
                         }
                     }else{
-                        if(isMathEq()){
+                        if(isMathEq(resolvedQuery)){
                             console.log("Math Eq");
                             requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
                             .then(function(response) {
