@@ -218,6 +218,7 @@ function processEvent(event) {
                                 sendFBMessage(sender,{text: response});  
                             });
                         }else{
+                            console.log("In Else");
                             let splittedText = splitResponse(responseText);
 
                             async.eachSeries(splittedText, (textPart, callback) => {
