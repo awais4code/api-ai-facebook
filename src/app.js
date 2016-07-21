@@ -122,7 +122,9 @@ function processEvent(event) {
                                 sendFBMessage(sender,{text: "No result found"});
                               }else{
                                 response = response.replace(",,","");
-                                sendFBTemplateMessage(sender,response);
+                                let subtitle = "We got the sermon that you want to listen.";
+                                let imgUrl = "https://eimi.io/img/church_logo.jpg";
+                        sendFBTemplateMessage(sender,response,subtitle,imgUrl);
                               }
                         });
 
@@ -206,7 +208,10 @@ function processEvent(event) {
                         });
                     }else if(action == "getBibleAnswer"){
                         let topic = parameters.topic;
-                        sendFBMessage(sender, {text: topic});
+                        let url = "http://www.gotquestions.org/search.php?zoom_query="+topic;
+                        let subtitle = "We got answers from Bible that you want.";
+                        let imgUrl = "https://eimi.io/img/bible_questions.png";
+                        sendFBTemplateMessage(sender,url,subtitle,imgUrl);
                     }else{
                         let splittedText = splitResponse(responseText);
 
@@ -307,7 +312,7 @@ function sendFBMessage(sender, messageData, callback) {
     });
 }
 
-function sendFBTemplateMessage(sender, url, callback) {
+function sendFBTemplateMessage(sender, url, subtitle, imgUrl, callback) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: FB_PAGE_ACCESS_TOKEN},
@@ -322,8 +327,8 @@ function sendFBTemplateMessage(sender, url, callback) {
                 elements:[
                   {
                     title:'Welcome to Eimi',
-                    image_url:'https://eimi.io/img/church_logo.jpg',
-                    subtitle:'We got the sermon that you want to listen.',
+                    image_url:imgUrl,
+                    subtitle:subtitle,
                     buttons:[
                       {
                         type:'web_url',
