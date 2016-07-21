@@ -179,7 +179,11 @@ function processEvent(event) {
                                 sendFBMessage(sender,{text: response});  
                             });
                         }else{
-                            sendFBMessage(sender,{text: responseText});
+                            let splittedText = splitResponse(responseText);
+
+                            async.eachSeries(splittedText, (textPart, callback) => {
+                                sendFBMessage(sender, {text: textPart}, callback);
+                            });
                         }
                     }else{
                         sendFBMessage(sender,{text: responseText});
