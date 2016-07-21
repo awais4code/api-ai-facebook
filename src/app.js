@@ -32,7 +32,7 @@ function isMathEq(query) {
     }else if(query.indexOf('^') != -1){
         isMathEq = true;
     }
-    sendFBMessage(sender,{text: isMathEq+""});
+    console.log("bool:"+isMathEq);
     return isMathEq;
 }
 
