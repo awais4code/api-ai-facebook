@@ -64,167 +64,163 @@ function processEvent(event) {
                 let resolvedQuery = response.result.resolvedQuery;
 
 
-                //if (isDefined(responseText)) {
-                    // facebook API limit for text length is 320,
-                    // so we split message if needed
-                    //var splittedText = splitResponse(responseText);
+                // facebook API limit for text length is 320,
+                // so we split message if needed
+                //var splittedText = splitResponse(responseText);
 
-                    // async.eachSeries(splittedText, (textPart, callback) => {
-                    //     sendFBMessage(sender, {text: textPart}, callback);
-                    // });
-                    console.log("Response: "+responseText);
+                // async.eachSeries(splittedText, (textPart, callback) => {
+                //     sendFBMessage(sender, {text: textPart}, callback);
+                // });
+                console.log("Response: "+responseText);
 
-                    if(isActionNotComplete == false){
+                if(isActionNotComplete == false){
 
-                        console.log("action: "+action);
-                        if(action == "sermonSearch"){
+                    console.log("action: "+action);
+                    if(action == "sermonSearch"){
 
-                            var weekArr = ['1st','2nd','3rd','4th','5th','first','second','third','fourth','fifth'];
-                            var monthArr = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-                            var yearArr = ['2012','2013','2014','2015','2016'];
+                        var weekArr = ['1st','2nd','3rd','4th','5th','first','second','third','fourth','fifth'];
+                        var monthArr = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+                        var yearArr = ['2012','2013','2014','2015','2016'];
 
-                            let sermon = parameters.sermonName;
-                            let date = parameters.date;
-                            let mediaType = parameters.mediaType;
-                            var week,month,year;
+                        let sermon = parameters.sermonName;
+                        let date = parameters.date;
+                        let mediaType = parameters.mediaType;
+                        var week,month,year;
 
-                            var res = date.split(" ");
-                            for (var i = 0; i < res.length; i++) {
-                                var x = res[i].toLowerCase();
-                                if(weekArr.indexOf(x) != -1 ){
-                                    week = x;
-                                    if(week == "first"){
-                                        week = "1st";
-                                    }else if(week == "second"){
-                                        week = "2nd";
-                                    }else if(week == "third"){
-                                        week = "3rd";
-                                    }else if(week == "fourth"){
-                                        week = "4th";
-                                    }else if(week == "fifth"){
-                                        week = "5th";
-                                    }
-                                }else if(monthArr.indexOf(x) != -1 ){
-                                    month = x;
-                                }else if(yearArr.indexOf(x) != -1 ){
-                                    year = x;
+                        var res = date.split(" ");
+                        for (var i = 0; i < res.length; i++) {
+                            var x = res[i].toLowerCase();
+                            if(weekArr.indexOf(x) != -1 ){
+                                week = x;
+                                if(week == "first"){
+                                    week = "1st";
+                                }else if(week == "second"){
+                                    week = "2nd";
+                                }else if(week == "third"){
+                                    week = "3rd";
+                                }else if(week == "fourth"){
+                                    week = "4th";
+                                }else if(week == "fifth"){
+                                    week = "5th";
                                 }
-                            };
+                            }else if(monthArr.indexOf(x) != -1 ){
+                                month = x;
+                            }else if(yearArr.indexOf(x) != -1 ){
+                                year = x;
+                            }
+                        };
 
-                            let url = "https://eimi.io/sermondb.php?cruchorspeaker="+sermon+"&month="+month+"&week="+week+"&year="+year+"&audioorvideo="+mediaType;
+                        let url = "https://eimi.io/sermondb.php?cruchorspeaker="+sermon+"&month="+month+"&week="+week+"&year="+year+"&audioorvideo="+mediaType;
 
-                            console.log("Url: "+url);
+                        console.log("Url: "+url);
 
-                            requestify.get(url)
-                            .then(function(response) {
-                                  var response = response.getBody();
-                                  response = response.trim();
-                                  if(response=="nulli"){
-                                    sendFBMessage(sender,{text: "No result found"});
-                                  }else{
-                                    response = response.replace(",,","");
-                                    sendFBMessage(sender,{text: "Click it to access media: \n"+response});
-                                  }
-                            });
+                        requestify.get(url)
+                        .then(function(response) {
+                              var response = response.getBody();
+                              response = response.trim();
+                              if(response=="nulli"){
+                                sendFBMessage(sender,{text: "No result found"});
+                              }else{
+                                response = response.replace(",,","");
+                                sendFBMessage(sender,{text: "Click it to access media: \n"+response});
+                              }
+                        });
 
-                        }else if(action == "bibleSearch"){
-                            
-                            let version = parameters.version;
-                            let passage = parameters.passage;
+                    }else if(action == "bibleSearch"){
+                        
+                        let version = parameters.version;
+                        let passage = parameters.passage;
 
-                            let url = "https://eimi.io/biblesearch.php?passage="+passage+"&version="+version;
+                        let url = "https://eimi.io/biblesearch.php?passage="+passage+"&version="+version;
 
-                            console.log("Bible Url",url);
+                        console.log("Bible Url",url);
 
-                            requestify.get(url)
-                            .then(function(response) {
-                                  response = response.getBody();
-                                  if(response.length<1){
-                                    sendFBMessage(sender,{text: "No result found"});
-                                  }else{
-                                    var splittedText = splitResponse(response);
+                        requestify.get(url)
+                        .then(function(response) {
+                              response = response.getBody();
+                              if(response.length<1){
+                                sendFBMessage(sender,{text: "No result found"});
+                              }else{
+                                var splittedText = splitResponse(response);
 
-                                    async.eachSeries(splittedText, (textPart, callback) => {
-                                        sendFBMessage(sender, {text: textPart}, callback);
-                                    });
-                                  }
-                            });
+                                async.eachSeries(splittedText, (textPart, callback) => {
+                                    sendFBMessage(sender, {text: textPart}, callback);
+                                });
+                              }
+                        });
 
-                        }else if(action == "fetchPlace"){
-                            let category = parameters.category;
-                            let city = parameters.city;
-                            console.log("category: "+category);
-                            console.log("city: "+city);
-                            requestify.get("https://eimi.io/dirdb.php?category="+category+"&city="+city)
-                            .then(function(response) {
-                                let responseArr = JSON.parse(response.getBody());
-                                console.log("length: "+responseArr.length);
-                                if(responseArr.length>0){
-                                    for (var i = 0; i < responseArr.length; i++) {
-                                        
-                                        var obj = responseArr[i];
+                    }else if(action == "fetchPlace"){
+                        let category = parameters.category;
+                        let city = parameters.city;
+                        console.log("category: "+category);
+                        console.log("city: "+city);
+                        requestify.get("https://eimi.io/dirdb.php?category="+category+"&city="+city)
+                        .then(function(response) {
+                            let responseArr = JSON.parse(response.getBody());
+                            console.log("length: "+responseArr.length);
+                            if(responseArr.length>0){
+                                for (var i = 0; i < responseArr.length; i++) {
                                     
-                                        var content = "";
-                                        content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
-                                        if(obj.web.length>1){
-                                            content += "Web: "+obj.web+"\n";
-                                        }
-                                        if(obj.fb.length>1){
-                                            content += "Facebook : "+obj.fb+"\n";
-                                        }
-                                        if(obj.twt.length>1){
-                                            content += "Twitter : "+obj.twt+"\n";
-                                        }
-                                        if(obj.media.length>1){
-                                            content += "Media : "+obj.media+"\n";
-                                        }
-                                        sendFBMessage(sender,{text: content});
+                                    var obj = responseArr[i];
+                                
+                                    var content = "";
+                                    content += "Company: "+obj.company+"\nAddress: "+obj.address+"\nPhone: "+obj.number+"\nDescription: "+obj.desc+"\n";
+                                    if(obj.web.length>1){
+                                        content += "Web: "+obj.web+"\n";
                                     }
-                                }else{
-                                    sendFBMessage(sender,{text: "No Result Found"});
+                                    if(obj.fb.length>1){
+                                        content += "Facebook : "+obj.fb+"\n";
+                                    }
+                                    if(obj.twt.length>1){
+                                        content += "Twitter : "+obj.twt+"\n";
+                                    }
+                                    if(obj.media.length>1){
+                                        content += "Media : "+obj.media+"\n";
+                                    }
+                                    sendFBMessage(sender,{text: content});
                                 }
-                            });
-                        }else if(action == "getVerse"){
-                            requestify.get("https://eimi.io/getverse.php")
-                            .then(function(response) {
-                                response = response.getBody();
-                                sendFBMessage(sender,{text: response});  
-                            });
-                        }else if(action == "getPlanetsCal"){
-                            requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+resolvedQuery)
-                            .then(function(response) {
-                                response = response.getBody();
-                                sendFBMessage(sender,{text: response});  
-                            });
-                        }else{
-                            let splittedText = splitResponse(responseText);
-
-                            async.eachSeries(splittedText, (textPart, callback) => {
-                                sendFBMessage(sender, {text: textPart}, callback);
-                            });
-                        }
+                            }else{
+                                sendFBMessage(sender,{text: "No Result Found"});
+                            }
+                        });
+                    }else if(action == "getVerse"){
+                        requestify.get("https://eimi.io/getverse.php")
+                        .then(function(response) {
+                            response = response.getBody();
+                            sendFBMessage(sender,{text: response});  
+                        });
+                    }else if(action == "getPlanetsCal"){
+                        requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+resolvedQuery)
+                        .then(function(response) {
+                            response = response.getBody();
+                            sendFBMessage(sender,{text: response});  
+                        });
                     }else{
-                        if(isMathEq("3x+5=10")){
-                            console.log("Math Eq");
+                        let splittedText = splitResponse(responseText);
 
-                            let url = "https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery)+"";
-                            sendFBMessage(sender,{text: url});
-
-                            // requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q=3x%2B5%3D6")
-                            // .then(function(response) {
-                            //     response = response.getBody();
-                            //     sendFBMessage(sender,{text: response});  
-                            // });
-                        }else{
-                            console.log("In Else");
-                            let splittedText = splitResponse(responseText);
-
-                            async.eachSeries(splittedText, (textPart, callback) => {
-                                sendFBMessage(sender, {text: textPart}, callback);
-                            });
-                        }
+                        async.eachSeries(splittedText, (textPart, callback) => {
+                            sendFBMessage(sender, {text: textPart}, callback);
+                        });
                     }
-               // }
+                }else{
+                    if(isMathEq(resolvedQuery)){
+
+                        let url = "https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery)+"";
+
+                        requestify.get(url)
+                        .then(function(response) {
+                            response = response.getBody();
+                            sendFBMessage(sender,{text: response});  
+                        });
+                    }else{
+                        console.log("In Else");
+                        let splittedText = splitResponse(responseText);
+
+                        async.eachSeries(splittedText, (textPart, callback) => {
+                            sendFBMessage(sender, {text: textPart}, callback);
+                        });
+                    }
+                }
 
             }
         });
