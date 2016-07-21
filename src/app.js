@@ -201,8 +201,8 @@ function processEvent(event) {
                         requestify.get(url)
                         .then(function(response) {
                             response = response.getBody();
-                            let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' and its votes are '"+response.imdbVotes+"'";
-                            sendFBMessage(sender,{text: respText});  
+                            
+                            sendFBMovieTemplateMessage(sender,response);  
                         });
                     }else{
                         let splittedText = splitResponse(responseText);
@@ -328,6 +328,45 @@ function sendFBTemplateMessage(sender, url, callback) {
                         title:'Listen'
                       }              
                     ]
+                  }
+                ]
+              }
+            }
+          }
+
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+
+        if (callback) {
+            callback();
+        }
+    });
+}
+
+function sendFBMovieTemplateMessage(sender, movObj, callback) {
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+        method: 'POST',
+        json: {
+            recipient: {id: sender},
+            message:{
+            attachment:{
+              type:'template',
+              payload:{
+                template_type:'generic',
+                elements:[
+                  {
+                    // let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' and its votes are '"+response.imdbVotes+"'";
+                    title:movObj.Title,
+                    image_url:movObj.Poster,
+                    subtitle:'Rated: '+movObj.Rated+'\nMetascore: '+movObj.Metascore+'\nRating: '+movObj.imdbRating+'\nVotes: '+movObj.imdbVotes,
+                    buttons:[]
                   }
                 ]
               }
