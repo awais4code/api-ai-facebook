@@ -197,7 +197,9 @@ function processEvent(event) {
                         });
                     }else if(action == "getMoviewReview"){
                         let movie = parameters.name;
-                        requestify.get("https://www.omdbapi.com/?t="+movie+"&y=&plot=short&r=json")
+                        let url = "https://www.omdbapi.com/?t="+movie+"&y=&plot=short&r=json";
+                        console.log(url);
+                        requestify.get(url)
                         .then(function(response) {
                             response = JSON.parse(response.getBody());
                             let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' And its votes are '"+response.imdbVotes+"'";
