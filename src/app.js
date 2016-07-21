@@ -213,6 +213,10 @@ function processEvent(event) {
                     }else{
                         if(isMathEq("3x+5=10")){
                             console.log("Math Eq");
+                            
+                            let url = "https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery)+"";
+                            console.log("Url",url);
+
                             requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q=3x%2B5%3D6")
                             .then(function(response) {
                                 response = response.getBody();
