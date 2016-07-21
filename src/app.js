@@ -211,7 +211,7 @@ function processEvent(event) {
                             });
                         }
                     }else{
-                        if(isMathEq(resolvedQuery)){
+                        if(isMathEq("3x+5=10")){
                             console.log("Math Eq");
                             requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
                             .then(function(response) {
