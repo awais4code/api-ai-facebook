@@ -211,19 +211,21 @@ function processEvent(event) {
                         }
                     }else{
                         if(isMathEq(resolvedQuery)){
-                            console.log("Math Eq");
-                            requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
-                            .then(function(response) {
-                                response = response.getBody();
-                                sendFBMessage(sender,{text: response});  
-                            });
+                            // console.log("Math Eq");
+                            // requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
+                            // .then(function(response) {
+                            //     response = response.getBody();
+                            //     sendFBMessage(sender,{text: response});  
+                            // });
+                            sendFBMessage(sender,{text: "Math Eq"});
                         }else{
-                            console.log("In Else");
-                            let splittedText = splitResponse(responseText);
+                            // console.log("In Else");
+                            // let splittedText = splitResponse(responseText);
 
-                            async.eachSeries(splittedText, (textPart, callback) => {
-                                sendFBMessage(sender, {text: textPart}, callback);
-                            });
+                            // async.eachSeries(splittedText, (textPart, callback) => {
+                            //     sendFBMessage(sender, {text: textPart}, callback);
+                            // });
+                            sendFBMessage(sender,{text: "response"});
                         }
                     }
                 }
