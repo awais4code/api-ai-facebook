@@ -186,7 +186,11 @@ function processEvent(event) {
                             });
                         }
                     }else{
-                        sendFBMessage(sender,{text: responseText});
+                        let splittedText = splitResponse(responseText);
+
+                        async.eachSeries(splittedText, (textPart, callback) => {
+                            sendFBMessage(sender, {text: textPart}, callback);
+                        });
                     }
                 }
 
