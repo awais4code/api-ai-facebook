@@ -204,7 +204,7 @@ function processEvent(event) {
                             
                             sendFBMovieTemplateMessage(sender,response);  
                         });
-                    }else if(action == ""){
+                    }else if(action == "getBibleAnswer"){
                         let topic = parameters.topic;
                         sendFBMessage(sender, {text: topic});
                     }else{
