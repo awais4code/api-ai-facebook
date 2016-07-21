@@ -200,7 +200,7 @@ function processEvent(event) {
                         let url = "https://www.omdbapi.com/?t="+encodeURIComponent(movie)+"&y=&plot=short&r=json";
                         requestify.get(url)
                         .then(function(response) {
-                            response = JSON.parse(response.getBody());
+                            response = response.getBody();
                             let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' And its votes are '"+response.imdbVotes+"'";
                             sendFBMessage(sender,{text: respText});  
                         });
