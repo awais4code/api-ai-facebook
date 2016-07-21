@@ -124,7 +124,7 @@ function processEvent(event) {
                                 response = response.replace(",,","");
                                 let subtitle = "We got the sermon that you want to listen.";
                                 let imgUrl = "https://eimi.io/img/church_logo.jpg";
-                        sendFBTemplateMessage(sender,response,subtitle,imgUrl);
+                        sendFBTemplateMessage(sender,response,subtitle,imgUrl,"Listen");
                               }
                         });
 
@@ -211,7 +211,7 @@ function processEvent(event) {
                         let url = "http://www.gotquestions.org/search.php?zoom_query="+topic;
                         let subtitle = "We got answers from Bible that you want.";
                         let imgUrl = "https://eimi.io/img/bible_questions.png";
-                        sendFBTemplateMessage(sender,url,subtitle,imgUrl);
+                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
                     }else{
                         let splittedText = splitResponse(responseText);
 
@@ -312,7 +312,7 @@ function sendFBMessage(sender, messageData, callback) {
     });
 }
 
-function sendFBTemplateMessage(sender, url, subtitle, imgUrl, callback) {
+function sendFBTemplateMessage(sender, url, subtitle, imgUrl, buttonTitle, callback) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: FB_PAGE_ACCESS_TOKEN},
@@ -333,7 +333,7 @@ function sendFBTemplateMessage(sender, url, subtitle, imgUrl, callback) {
                       {
                         type:'web_url',
                         url:url,
-                        title:'Listen'
+                        title:buttonTitle
                       }              
                     ]
                   }
