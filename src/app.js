@@ -197,7 +197,7 @@ function processEvent(event) {
                         });
                     }else if(action == "getMoviewReview"){
                         let movie = parameters.name;
-                        let url = "https://www.omdbapi.com/?t="+movie+"&y=&plot=short&r=json";
+                        let url = "https://www.omdbapi.com/?t="+encodeURIComponent(movie)+"&y=&plot=short&r=json";
                         sendFBMessage(sender,{text: url});
                         // requestify.get(url)
                         // .then(function(response) {
