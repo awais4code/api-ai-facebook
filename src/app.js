@@ -211,6 +211,7 @@ function processEvent(event) {
                         }
                     }else{
                         if(isMathEq){
+                            console.log("Math Eq");
                             requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+encodeURIComponent(resolvedQuery))
                             .then(function(response) {
                                 response = response.getBody();
