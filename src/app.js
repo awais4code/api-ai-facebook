@@ -190,18 +190,19 @@ function processEvent(event) {
                             sendFBMessage(sender,{text: response});  
                         });
                     }else if(action == "getPlanetsCal"){
-                        requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+resolvedQuery)
-                        .then(function(response) {
-                            response = response.getBody();
-                            sendFBMessage(sender,{text: response});  
-                        });
+                        // requestify.get("https://eimi.io/wolfram/samples/simpleRequest.php?q="+resolvedQuery)
+                        // .then(function(response) {
+                        //     response = response.getBody();
+                        //     sendFBMessage(sender,{text: response});  
+                        // });
+                        sendFBTemplateMessage(sender,{text: response});
                     }else if(action == "getMoviewReview"){
                         let movie = parameters.name;
                         let url = "https://www.omdbapi.com/?t="+encodeURIComponent(movie)+"&y=&plot=short&r=json";
                         requestify.get(url)
                         .then(function(response) {
                             response = response.getBody();
-                            let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' And its votes are '"+response.imdbVotes+"'";
+                            let respText = "This movie is rated as '"+response.Rated+"', its metascore is '"+response.Metascore+"', its rating is '"+response.imdbRating+ "' and its votes are '"+response.imdbVotes+"'";
                             sendFBMessage(sender,{text: respText});  
                         });
                     }else{
@@ -290,6 +291,50 @@ function sendFBMessage(sender, messageData, callback) {
         json: {
             recipient: {id: sender},
             message: messageData
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+
+        if (callback) {
+            callback();
+        }
+    });
+}
+
+function sendFBTemplateMessage(sender, messageData, callback) {
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+        method: 'POST',
+        json: {
+            recipient: {id: sender},
+            message:{
+            attachment:{
+              type:'template',
+              payload:{
+                template_type:'generic',
+                elements:[
+                  {
+                    title:'Welcome to Peter Hats',
+                    image_url:'http://petersapparel.parseapp.com/img/item100-thumb.png',
+                    subtitle:'We got the right hat for everyone.',
+                    buttons:[
+                      {
+                        type:'web_url',
+                        url:'https://petersapparel.parseapp.com/view_item?item_id=100',
+                        title:'View Website'
+                      }              
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+
         }
     }, function (error, response, body) {
         if (error) {
