@@ -64,14 +64,7 @@ function processEvent(event) {
                 let resolvedQuery = response.result.resolvedQuery;
 
 
-                if (isDefined(responseData) && isDefined(responseData.facebook)) {
-                    try {
-                        console.log('Response as formatted message');
-                        sendFBMessage(sender, responseData.facebook);
-                    } catch (err) {
-                        sendFBMessage(sender, {text: err.message });
-                    }
-                } else if (isDefined(responseText)) {
+                //if (isDefined(responseText)) {
                     // facebook API limit for text length is 320,
                     // so we split message if needed
                     //var splittedText = splitResponse(responseText);
@@ -231,7 +224,7 @@ function processEvent(event) {
                             });
                         }
                     }
-                }
+               // }
 
             }
         });
