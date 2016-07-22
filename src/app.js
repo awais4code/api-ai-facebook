@@ -239,6 +239,33 @@ function processEvent(event) {
                             	sendFBMessage(sender, {text: "No Result Found"});
                             }
                         });
+                    }else if(action == "getBread"){
+                    	var url = "";
+                    	let type = parameters.type;
+                    	if(type == "read"){
+                    		url="http://odb.org/";
+                    	}else{
+                    		var date = new Date();
+		                    var day = date.getDate();
+		                    var month = date.getMonth()+1;
+		                    var year1 = date.getFullYear().toString();
+		                    year = year1.substring(2);
+
+		                    if(month<10){
+		                        month = "0"+month;
+		                    }
+		                    if(day<10){
+		                        day = "0"+day;
+		                    }
+		                    date = month+'-'+day+'-'+year;
+
+		                    url = "http://odb.org/wp-content/themes/odbm-base/assets/download.php?file=http://dzxuyknqkmi1e.cloudfront.net/odb/"+year1+"/"+month+"/odb-"+date+".mp3";
+                    	}
+
+                    	let webUrl = url;
+                        let subtitle = "We got the encouragement for you.";
+                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Get Bread");
                     }else{
                         let splittedText = splitResponse(responseText);
 
