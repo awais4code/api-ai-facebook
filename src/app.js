@@ -213,11 +213,10 @@ function processEvent(event) {
                         let imgUrl = "https://eimi.io/img/bible_questions.png";
                         sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
                     }else if(action == "getDeveloper"){
-                    	// let url = "http://www.gotquestions.org/search.php?zoom_query="+topic;
-                     //    let subtitle = "Developer of Eimi";
-                     //    let imgUrl = "https://eimi.io/img/awais.jpg";
-                     //    sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
-                     sendFBMessage(sender,{text: "iamawais"});
+                    	let url = "http://www.gotquestions.org/search.php?zoom_query=abc";
+                        let subtitle = "Developer of Eimi";
+                        let imgUrl = "https://eimi.io/img/awais.jpg";
+                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Thanks for watching");
                     }else{
                         let splittedText = splitResponse(responseText);
 
