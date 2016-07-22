@@ -212,6 +212,11 @@ function processEvent(event) {
                         let subtitle = "We got answers from Bible that you want.";
                         let imgUrl = "https://eimi.io/img/bible_questions.png";
                         sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
+                    }else if(action == "getDeveloper"){
+                    	let url = "http://www.gotquestions.org/search.php?zoom_query="+topic;
+                        let subtitle = "Developer of Eimi";
+                        let imgUrl = "https://eimi.io/img/awais.jpg";
+                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
                     }else{
                         let splittedText = splitResponse(responseText);
 
@@ -326,7 +331,7 @@ function sendFBTemplateMessage(sender, url, subtitle, imgUrl, buttonTitle, callb
                 template_type:'generic',
                 elements:[
                   {
-                    title:'Welcome to Eimi',
+                    title:'Muhammad Awais',
                     image_url:imgUrl,
                     subtitle:subtitle,
                     buttons:[
