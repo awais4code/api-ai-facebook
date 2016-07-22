@@ -212,11 +212,29 @@ function processEvent(event) {
                         let subtitle = "We got answers from Bible that you want.";
                         let imgUrl = "https://eimi.io/img/bible_questions.png";
                         sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
-                    }else if(action == "getDeveloper"){
-                    	let url = "http://www.gotquestions.org/search.php?zoom_query=abc";
-                        let subtitle = "Developer of Eimi";
-                        let imgUrl = "https://eimi.io/img/awais.jpg";
-                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Thanks for watching");
+                    }else if(action == "getSearchResults"){
+                    	let web = parameters.web;
+                    	let query = parameters.query;
+
+                    	requestify.get("https://eimi.io/lookupurls.php")
+                        .then(function(response) {
+                            response = response.getBody();
+                            var webUrl = "";
+
+                            for (var i = 0; i < response.length; i++) {
+                            	let obj = response[i];
+                            	let alias = obj.alias;
+                            	let aliasArr = alias.split(",");
+                            	if(aliasArr.indexOf(web) != -1)
+							    {
+							        webUrl = obj.url;
+							    }
+                            }
+
+                            let res = webUrl+query;
+                            sendFBMessage(sender, {text: res});
+
+                        });
                     }else{
                         let splittedText = splitResponse(responseText);
 
@@ -331,7 +349,7 @@ function sendFBTemplateMessage(sender, url, subtitle, imgUrl, buttonTitle, callb
                 template_type:'generic',
                 elements:[
                   {
-                    title:'Muhammad Awais',
+                    title:'Welcome to Eimi',
                     image_url:imgUrl,
                     subtitle:subtitle,
                     buttons:[
