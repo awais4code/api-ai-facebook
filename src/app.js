@@ -218,21 +218,21 @@ function processEvent(event) {
 
                     	requestify.get("https://eimi.io/lookupurls.php")
                         .then(function(response) {
-                            response = response.getBody();
-           //                  var webUrl = "";
+                            response = JSON.parse(response.getBody());
+                            var webUrl = "";
 
-           //                  for (var i = 0; i < response.length; i++) {
-           //                  	let obj = response[i];
-           //                  	let alias = obj.alias;
-           //                  	let aliasArr = alias.split(",");
-           //                  	if(aliasArr.indexOf(web) != -1)
-							    // {
-							    //     webUrl = obj.url;
-							    // }
-           //                  }
+                            for (var i = 0; i < response.length; i++) {
+                            	let obj = response[i];
+                            	let alias = obj.alias;
+                            	let aliasArr = alias.split(",");
+                            	if(aliasArr.indexOf(web) != -1)
+							    {
+							        webUrl = obj.url;
+							    }
+                            }
 
-           //                  let res = webUrl+query;
-                            sendFBMessage(sender, {text: response.length});
+                            let res = webUrl+query;
+                            sendFBMessage(sender, {text: res});
                         });
                     }else{
                         let splittedText = splitResponse(responseText);
