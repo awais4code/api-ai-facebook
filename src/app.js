@@ -216,9 +216,9 @@ function processEvent(event) {
                     	let web = parameters.web;
                     	let query = parameters.query;
 
-           //          	requestify.get("https://eimi.io/lookupurls.php")
-           //              .then(function(response) {
-           //                  response = response.getBody();
+                    	requestify.get("https://eimi.io/lookupurls.php")
+                        .then(function(response) {
+                            response = response.getBody();
            //                  var webUrl = "";
 
            //                  for (var i = 0; i < response.length; i++) {
@@ -232,9 +232,8 @@ function processEvent(event) {
            //                  }
 
            //                  let res = webUrl+query;
-
-           //              });
-                            sendFBMessage(sender, {text: web});
+                            sendFBMessage(sender, {text: response.length});
+                        });
                     }else{
                         let splittedText = splitResponse(responseText);
 
