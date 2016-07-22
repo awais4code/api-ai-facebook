@@ -124,7 +124,7 @@ function processEvent(event) {
                                 response = response.replace(",,","");
                                 let subtitle = "We got the sermon that you want to listen.";
                                 let imgUrl = "https://eimi.io/img/church_logo.jpg";
-                        sendFBTemplateMessage(sender,response,subtitle,imgUrl,"Listen");
+                        		sendFBTemplateMessage(sender,response,subtitle,imgUrl,"Listen");
                               }
                         });
 
@@ -230,9 +230,14 @@ function processEvent(event) {
 							        webUrl = obj.url;
 							    }
                             }
-
-                            let res = webUrl+query;
-                            sendFBMessage(sender, {text: res});
+                            if(webUrl.length>0){
+                            	let url = webUrl+encodeURIComponent(query);
+		                        let subtitle = "We got the results that you want to search.";
+		                        let imgUrl = "https://eimi.io/img/church_logo.jpg";
+		                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Here are results");
+                            }else{
+                            	sendFBMessage(sender, {text: "No Result Found"});
+                            }
                         });
                     }else{
                         let splittedText = splitResponse(responseText);
