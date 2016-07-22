@@ -265,7 +265,7 @@ function processEvent(event) {
                     	let webUrl = url;
                         let subtitle = "We got the encouragement for you.";
                         let imgUrl = "https://eimi.io/img/Search_World.jpg";
-                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Get Bread");
+                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get Bread");
                     }else{
                         let splittedText = splitResponse(responseText);
 
