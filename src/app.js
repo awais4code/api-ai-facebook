@@ -216,25 +216,25 @@ function processEvent(event) {
                     	let web = parameters.web;
                     	let query = parameters.query;
 
-                    	requestify.get("https://eimi.io/lookupurls.php")
-                        .then(function(response) {
-                            response = response.getBody();
-                            var webUrl = "";
+           //          	requestify.get("https://eimi.io/lookupurls.php")
+           //              .then(function(response) {
+           //                  response = response.getBody();
+           //                  var webUrl = "";
 
-                            for (var i = 0; i < response.length; i++) {
-                            	let obj = response[i];
-                            	let alias = obj.alias;
-                            	let aliasArr = alias.split(",");
-                            	if(aliasArr.indexOf(web) != -1)
-							    {
-							        webUrl = obj.url;
-							    }
-                            }
+           //                  for (var i = 0; i < response.length; i++) {
+           //                  	let obj = response[i];
+           //                  	let alias = obj.alias;
+           //                  	let aliasArr = alias.split(",");
+           //                  	if(aliasArr.indexOf(web) != -1)
+							    // {
+							    //     webUrl = obj.url;
+							    // }
+           //                  }
 
-                            let res = webUrl+query;
-                            sendFBMessage(sender, {text: res});
+           //                  let res = webUrl+query;
 
-                        });
+           //              });
+                            sendFBMessage(sender, {text: web});
                     }else{
                         let splittedText = splitResponse(responseText);
 
