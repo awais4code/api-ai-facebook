@@ -39,7 +39,8 @@ function processEvent(event) {
     var sender = event.sender.id.toString();
 
     if(event.postback){
-        sendFBMessage(sender, {text: "Hi from eimi"});
+        let welcomeText = "Hi! I'm Eimi, your mobile persona. I am your Evolving Information Management Intelligence and I'm here to assist you! The more you use me, the more I learn! What can I do for you today?";
+        sendFBMessage(sender, {text: welcomeText});
     }
 
     if (event.message && event.message.text) {
