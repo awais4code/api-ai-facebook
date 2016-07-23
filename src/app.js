@@ -272,7 +272,7 @@ function processEvent(event) {
                         let imgUrl = "https://eimi.io/img/Search_World.jpg";
                         sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get Bread");
                     }else{
-                        if(speech.length>0){
+                        if(responseText.length>0){
                             let splittedText = splitResponse(responseText);
 
                             async.eachSeries(splittedText, (textPart, callback) => {
