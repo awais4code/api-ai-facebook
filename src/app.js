@@ -38,6 +38,10 @@ function isMathEq(query) {
 function processEvent(event) {
     var sender = event.sender.id.toString();
 
+    if(event.postback){
+        sendFBMessage(sender, {text: "Hi from eimi"});
+    }
+
     if (event.message && event.message.text) {
         var text = event.message.text;
         // Handle a text message from this sender
@@ -249,7 +253,7 @@ function processEvent(event) {
 		                    var day = date.getDate();
 		                    var month = date.getMonth()+1;
 		                    var year1 = date.getFullYear().toString();
-		                    year = year1.substring(2);
+		                    let year = year1.substring(2);
 
 		                    if(month<10){
 		                        month = "0"+month;
