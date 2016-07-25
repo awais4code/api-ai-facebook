@@ -458,6 +458,7 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
                         url:'http://www.imdb.com/showtimes/title/'+movObj.imdbID,
                         title:'Watch Trailer'
                       }
+                    ]
                   }
                 ]
               }
