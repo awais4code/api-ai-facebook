@@ -325,7 +325,7 @@ function processEvent(event) {
                             let subtitle1 = "Weather is "+weather+" and wind is "+wind;
                             let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
 							
-							sendFBMessage(sender, {text: subtitle1});
+							sendFBMessage(sender, {text: url});
 
 
 
