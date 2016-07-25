@@ -306,7 +306,7 @@ function processEvent(event) {
                         });
                     }else if(action == "weather.search"){
                     	let location = parameters.location;
-                    	let url = "http://api.wunderground.com/api/6d7289b9a7f61f13/conditions/q/CA/"+location+".json";
+                    	let url = "https://api.apixu.com/v1/current.json?key=e40b422160674c86924201102162207&q="+location;
 
                     	requestify.get(url)
                         .then(function(response) {
@@ -314,11 +314,11 @@ function processEvent(event) {
 
                     		let elements = [];
                             
-                            let weather = response.current_observation.weather;
-                            let temprature = response.current_observation.temperature_string;
-                            let city = response.current_observation.display_location.full;
-                            let humadity = response.current_observation.relative_humidity;
-                            let wind = response.current_observation.wind_string;
+                            let weather = response.current.condition.text;
+                            let temprature = response.current.temp_f+" F ("+response.current.temp_c+")";
+                            let city = response.location.name+","+response.location.country;
+                            let humadity = response.current.humidity;
+                            let wind = response.current.wind_mph+" mph";
 
                             let title = "Weather report of "+city;
                             let imgUrl = "https://eimi.io/img/church_logo.jpg";
