@@ -455,7 +455,7 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
                     buttons:[
                       {
                         type:'web_url',
-                        url:'http://www.imdb.com/showtimes/title/'+movObj.imdbID,
+                        url:'http://www.imdb.com/title/'+movObj.imdbID,
                         title:'Watch Trailer'
                       }
                     ]
