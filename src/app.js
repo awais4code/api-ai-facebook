@@ -285,7 +285,7 @@ function processEvent(event) {
 	                        let subtitle = "We got the android version of eimi for you.";
 	                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
 	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
-                    	}else if(storeType == "ios"){
+                    	}else if(storeType == "ios" || storeType == "iphone"){
                     		let webUrl = "";
 	                        let subtitle = "We got the iOS version of eimi for you.";
 	                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
