@@ -459,6 +459,18 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
                         title:'Watch Trailer'
                       }
                     ]
+                  },
+                  {
+                    title:movObj.Title,
+                    image_url:movObj.Poster,
+                    subtitle:'Rated: "'+movObj.Rated+'" Metascore: "'+movObj.Metascore+'" Rating: "'+movObj.imdbRating+'" Votes: "'+movObj.imdbVotes+'"',
+                    buttons:[
+                      {
+                        type:'web_url',
+                        url:'http://www.imdb.com/title/'+movObj.imdbID,
+                        title:'Watch Trailer'
+                      }
+                    ]
                   }
                 ]
               }
