@@ -271,12 +271,6 @@ function processEvent(event) {
                         let subtitle = "We got the encouragement for you.";
                         let imgUrl = "https://eimi.io/img/Search_World.jpg";
                         sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get Bread");
-                    }else if(action == "getTrailer"){
-                    	let name = parameters.name;
-                    	let webUrl = "http://www.videodetective.com/browse?q="+encodeURIComponent(name);
-                        let subtitle = "We got the trailer of movie that you want.";
-                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
-                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Show Trailer");
                     }else if(action == "getStoreLink"){
                     	let storeType = parameters.storeType.toLowerCase();
 
@@ -289,7 +283,7 @@ function processEvent(event) {
                     		let webUrl = "";
 	                        let subtitle = "We got the iOS version of eimi for you.";
 	                        let imgUrl = "https://eimi.io/img/ios.png";
-	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Show Trailer");
+	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
                     	}else{
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
                     	}
@@ -457,7 +451,13 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
                   {
                     title:movObj.Title,
                     image_url:movObj.Poster,
-                    subtitle:'Rated: "'+movObj.Rated+'" Metascore: "'+movObj.Metascore+'" Rating: "'+movObj.imdbRating+'" Votes: "'+movObj.imdbVotes+'"'
+                    subtitle:'Rated: "'+movObj.Rated+'" Metascore: "'+movObj.Metascore+'" Rating: "'+movObj.imdbRating+'" Votes: "'+movObj.imdbVotes+'"',
+                    buttons:[
+                      {
+                        type:'web_url',
+                        url:'http://www.imdb.com/showtimes/title/'+movObj.imdbID,
+                        title:"Watch Trailer"
+                      }
                   }
                 ]
               }
