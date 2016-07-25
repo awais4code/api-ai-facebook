@@ -324,21 +324,24 @@ function processEvent(event) {
                             let imgUrl = "https://eimi.io/img/church_logo.jpg";
                             let subtitle1 = "Weather is "+weather+" and wind is "+wind;
                             let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
+							
+							sendFBMessage(sender, {text: subtitle1});
 
 
-                            let obj1 = {};
-                            obj1.title = title;
-                            obj1.image_url = imgUrl;
-                            obj1.subtitle = subtitle1;
-                            elements[0]=obj1;
 
-                            let obj2 = {};
-                            obj2.title = title;
-                            obj2.image_url = imgUrl;
-                            obj2.subtitle = subtitle2;
-                            elements[1]=obj2;
+                      //       let obj1 = {};
+                      //       obj1.title = title;
+                      //       obj1.image_url = imgUrl;
+                      //       obj1.subtitle = subtitle1;
+                      //       elements[0]=obj1;
 
-                    		sendFBElementMessage(sender,elements);
+                      //       let obj2 = {};
+                      //       obj2.title = title;
+                      //       obj2.image_url = imgUrl;
+                      //       obj2.subtitle = subtitle2;
+                      //       elements[1]=obj2;
+
+                    		// sendFBElementMessage(sender,elements);
 
                         });
 
