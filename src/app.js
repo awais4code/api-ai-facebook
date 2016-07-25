@@ -338,7 +338,7 @@ function processEvent(event) {
                             obj2.subtitle = subtitle2;
                             elements[1]=obj2;
 
-                    		sendFBTemplateMessage(sender,elements);
+                    		sendFBElementMessage(sender,elements);
 
                         });
 
