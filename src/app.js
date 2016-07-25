@@ -307,44 +307,43 @@ function processEvent(event) {
                     }else if(action == "weather.search"){
                     	let location = parameters.location;
                     	let url = "http://api.wunderground.com/api/6d7289b9a7f61f13/conditions/q/CA/"+location+".json";
-                    	sendFBMessage(sender, {text: url});
 
-       //              	requestify.get(url)
-       //                  .then(function(response) {
-       //                      response = response.getBody();
+                    	requestify.get(url)
+                        .then(function(response) {
+                            response = response.getBody();
 
-       //              		let elements = [];
+                    		let elements = [];
                             
-       //                      let weather = response.weather;
-       //                      let temprature = response.temperature_string;
-       //                      let city = response.display_location.full;
-       //                      let humadity = response.relative_humidity;
-       //                      let wind = response.wind_string;
+                            let weather = response.current_observation.weather;
+                            let temprature = response.current_observation.temperature_string;
+                            let city = response.current_observation.display_location.full;
+                            let humadity = response.current_observation.relative_humidity;
+                            let wind = response.current_observation.wind_string;
 
-       //                      let title = "Weather report of city";
-       //                      let imgUrl = "https://eimi.io/img/church_logo.jpg";
-       //                      let subtitle1 = "Weather is "+weather+" and wind is "+wind;
-       //                      let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
+                            let title = "Weather report of city";
+                            let imgUrl = "https://eimi.io/img/church_logo.jpg";
+                            let subtitle1 = "Weather is "+weather+" and wind is "+wind;
+                            let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
 							
-							// sendFBMessage(sender, {text: url});
+							sendFBMessage(sender, {text: subtitle1});
 
 
 
-       //                //       let obj1 = {};
-       //                //       obj1.title = title;
-       //                //       obj1.image_url = imgUrl;
-       //                //       obj1.subtitle = subtitle1;
-       //                //       elements[0]=obj1;
+                      //       let obj1 = {};
+                      //       obj1.title = title;
+                      //       obj1.image_url = imgUrl;
+                      //       obj1.subtitle = subtitle1;
+                      //       elements[0]=obj1;
 
-       //                //       let obj2 = {};
-       //                //       obj2.title = title;
-       //                //       obj2.image_url = imgUrl;
-       //                //       obj2.subtitle = subtitle2;
-       //                //       elements[1]=obj2;
+                      //       let obj2 = {};
+                      //       obj2.title = title;
+                      //       obj2.image_url = imgUrl;
+                      //       obj2.subtitle = subtitle2;
+                      //       elements[1]=obj2;
 
-       //              		// sendFBElementMessage(sender,elements);
+                    		// sendFBElementMessage(sender,elements);
 
-       //                  });
+                        });
 
                     }else{
                         if(responseText.length>0){
