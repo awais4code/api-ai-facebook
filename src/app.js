@@ -271,6 +271,12 @@ function processEvent(event) {
                         let subtitle = "We got the encouragement for you.";
                         let imgUrl = "https://eimi.io/img/Search_World.jpg";
                         sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get Bread");
+                    }else if(action == "getTrailer"){
+                    	let name = parameters.name;
+                    	let webUrl = "http://www.videodetective.com/browse?q="+encodeURIComponent(name);
+                        let subtitle = "We got the trailer of movie that you want.";
+                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get Bread");
                     }else{
                         let splittedText = splitResponse(responseText);
 
