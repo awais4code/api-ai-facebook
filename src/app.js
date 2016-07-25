@@ -283,12 +283,12 @@ function processEvent(event) {
                     	if(storeType == "android"){
                     		let webUrl = "https://play.google.com/store/apps/details?id=ai.api.samplee";
 	                        let subtitle = "We got the android version of eimi for you.";
-	                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+	                        let imgUrl = "https://eimi.io/img/android.png";
 	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
                     	}else if(storeType == "ios" || storeType == "iphone"){
                     		let webUrl = "";
 	                        let subtitle = "We got the iOS version of eimi for you.";
-	                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+	                        let imgUrl = "https://eimi.io/img/ios.png";
 	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Show Trailer");
                     	}else{
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
