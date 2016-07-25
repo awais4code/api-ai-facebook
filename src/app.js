@@ -276,7 +276,7 @@ function processEvent(event) {
                     	let webUrl = "http://www.videodetective.com/browse?q="+encodeURIComponent(name);
                         let subtitle = "We got the trailer of movie that you want.";
                         let imgUrl = "https://eimi.io/img/Search_World.jpg";
-                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get Bread");
+                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Show Trailer");
                     }else{
                         let splittedText = splitResponse(responseText);
 
