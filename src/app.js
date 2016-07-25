@@ -278,7 +278,9 @@ function processEvent(event) {
                     		let webUrl = "https://play.google.com/store/apps/details?id=ai.api.samplee";
 	                        let subtitle = "We got the android version of eimi for you.";
 	                        let imgUrl = "https://eimi.io/img/android.png";
-	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
+	                        for (var i = 0; i < 2; i++) {
+		                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
+	                        }
                     	}else if(storeType == "ios" || storeType == "iphone"){
                     		let webUrl = "";
 	                        let subtitle = "We got the iOS version of eimi for you.";
