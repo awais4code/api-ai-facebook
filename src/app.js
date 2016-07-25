@@ -306,7 +306,42 @@ function processEvent(event) {
                         });
                     }else if(action == "weather.search"){
                     	let location = parameters.location;
-                    	sendFBMessage(sender, {text: location});
+                    	let url = "http://api.wunderground.com/api/6d7289b9a7f61f13/conditions/q/CA/"+location+".json";
+
+                    	requestify.get(url)
+                        .then(function(response) {
+                            response = response.getBody();
+
+                    		let elements = [];
+                            
+                            let weather = response.weather;
+                            let temprature = response.temperature_string;
+                            let city = response.display_location.full;
+                            let humadity = response.relative_humidity;
+                            let wind = response.wind_string;
+
+                            let title = "Weather report of city";
+                            let imgUrl = "https://eimi.io/img/church_logo.jpg";
+                            let subtitle1 = "Weather is "+weather+" and wind is "+wind;
+                            let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
+
+
+                            let obj1 = {};
+                            obj1.title = title;
+                            obj1.image_url = imgUrl;
+                            obj1.subtitle = subtitle1;
+                            elements[0]=obj1;
+
+                            let obj2 = {};
+                            obj2.title = title;
+                            obj2.image_url = imgUrl;
+                            obj2.subtitle = subtitle2;
+                            elements[1]=obj2;
+
+                    		sendFBTemplateMessage(sender,elements);
+
+                        });
+
                     }else{
                         if(responseText.length>0){
                             let splittedText = splitResponse(responseText);
@@ -420,6 +455,37 @@ function sendFBTemplateMessage(sender, url, subtitle, imgUrl, buttonTitle, callb
                     ]
                   }
                 ]
+              }
+            }
+          }
+
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+
+        if (callback) {
+            callback();
+        }
+    });
+}
+
+function sendFBElementMessage(sender, templateElements, callback) {
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+        method: 'POST',
+        json: {
+            recipient: {id: sender},
+            message:{
+            attachment:{
+              type:'template',
+              payload:{
+                template_type:'generic',
+                elements:templateElements
               }
             }
           }
