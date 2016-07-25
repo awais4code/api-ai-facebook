@@ -316,7 +316,7 @@ function processEvent(event) {
                             
                             let weather = response.current.condition.text;
                             let temprature = response.current.temp_f+" F ("+response.current.temp_c+")";
-                            let city = response.location.name+","+response.location.country;
+                            let city = response.location.name+","+response.location.region+","+response.location.country;
                             let humadity = response.current.humidity;
                             let wind = response.current.wind_mph+" mph";
 
