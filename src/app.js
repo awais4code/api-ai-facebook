@@ -277,6 +277,22 @@ function processEvent(event) {
                         let subtitle = "We got the trailer of movie that you want.";
                         let imgUrl = "https://eimi.io/img/Search_World.jpg";
                         sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Show Trailer");
+                    }else if(action == "getStoreLink"){
+                    	let storeType = parameters.storeType.toLowerCase();
+
+                    	if(storeType == "android"){
+                    		let webUrl = "https://play.google.com/store/apps/details?id=ai.api.samplee";
+	                        let subtitle = "We got the android version of eimi for you.";
+	                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
+                    	}else if(storeType == "ios"){
+                    		let webUrl = "";
+	                        let subtitle = "We got the iOS version of eimi for you.";
+	                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Show Trailer");
+                    	}else{
+                    		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
+                    	}
                     }else{
                         let splittedText = splitResponse(responseText);
 
