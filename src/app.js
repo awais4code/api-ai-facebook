@@ -304,6 +304,9 @@ function processEvent(event) {
                             response = response.getBody();
                             sendFBMessage(sender,{text: response});  
                         });
+                    }else if(action == "weather.search"){
+                    	let location = parameters.location;
+                    	sendFBMessage(sender, {text: location});
                     }else{
                         if(responseText.length>0){
                             let splittedText = splitResponse(responseText);
@@ -448,18 +451,6 @@ function sendFBMovieTemplateMessage(sender, movObj, callback) {
               payload:{
                 template_type:'generic',
                 elements:[
-                  {
-                    title:movObj.Title,
-                    image_url:movObj.Poster,
-                    subtitle:'Rated: "'+movObj.Rated+'" Metascore: "'+movObj.Metascore+'" Rating: "'+movObj.imdbRating+'" Votes: "'+movObj.imdbVotes+'"',
-                    buttons:[
-                      {
-                        type:'web_url',
-                        url:'http://www.imdb.com/title/'+movObj.imdbID,
-                        title:'Watch Trailer'
-                      }
-                    ]
-                  },
                   {
                     title:movObj.Title,
                     image_url:movObj.Poster,
