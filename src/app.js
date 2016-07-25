@@ -320,7 +320,7 @@ function processEvent(event) {
                             let humadity = response.current_observation.relative_humidity;
                             let wind = response.current_observation.wind_string;
 
-                            let title = "Weather report of "+city;
+                            let title = "Weather report  "+city;
                             let imgUrl = "https://eimi.io/img/church_logo.jpg";
                             let subtitle1 = "Weather is "+weather+" and wind is "+wind;
                             let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
