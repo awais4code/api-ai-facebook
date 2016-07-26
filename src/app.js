@@ -341,7 +341,7 @@ function processEvent(event) {
 	                            let wind = response.current.wind_mph+" mph";
 
 	                            let title = "Weather report of "+city;
-	                            let imgUrl = "https://eimi.io/img/church_logo.jpg";
+	                            let imgUrl = "https://eimi.io/img/weather_icon.jpeg";
 	                            let subtitle1 = "Weather is "+weather+" and wind is "+wind;
 	                            let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
 								
