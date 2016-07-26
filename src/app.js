@@ -225,7 +225,7 @@ function processEvent(event) {
                         let url = "http://www.gotquestions.org/search.php?zoom_query="+topic;
                         let subtitle = "We got answers from Bible that you want.";
                         let imgUrl = "https://eimi.io/img/bible_search_icon.jpeg";
-                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
+                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Here’s what I found!");
                     }else if(action == "getSearchResults"){
                     	let web = parameters.web;
                     	let query = parameters.query;
@@ -246,9 +246,9 @@ function processEvent(event) {
                             }
                             if(webUrl.length>0){
                             	let url = webUrl+encodeURIComponent(query);
-		                        let subtitle = "We got the results that you want to search.";
+		                        let subtitle = "Here’s what I found!";
 		                        let imgUrl = "https://eimi.io/img/search_icon.jpeg";
-		                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Here are results");
+		                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Tap me to get results");
                             }else{
                             	let elements = [];
                             	let obj = {};
