@@ -250,7 +250,13 @@ function processEvent(event) {
 		                        let imgUrl = "https://eimi.io/img/search_icon.jpeg";
 		                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Here are results");
                             }else{
-                            	sendFBMessage(sender, {text: "No Result Found"});
+                            	let elements = [];
+                            	let obj = {};
+	                            obj.title = "Not Found!";
+	                            obj.image_url = "https://eimi.io/img/oops.jpg";
+	                            obj.subtitle = "No matching location found.";
+	                            elements[0]=obj;
+	                    		sendFBElementMessage(sender,elements);
                             }
                         });
                     }else if(action == "getBread"){
