@@ -313,32 +313,44 @@ function processEvent(event) {
                             response = response.getBody();
 
                     		let elements = [];
+
+                    		if(response.error){
+
+                    			let obj = {};
+	                            obj.title = "Not Found!";
+	                            obj.image_url = "https://eimi.io/img/oopsimage.png";
+	                            obj.subtitle = "No matching location found.";
+	                            elements[0]=obj;
+	                    		sendFBElementMessage(sender,elements);
+
+                    		}else{
                             
-                            let weather = response.current.condition.text;
-                            let temprature = response.current.temp_f+" F ("+response.current.temp_c+")";
-                            let city = response.location.name+","+response.location.region+","+response.location.country;
-                            let humadity = response.current.humidity;
-                            let wind = response.current.wind_mph+" mph";
+	                            let weather = response.current.condition.text;
+	                            let temprature = response.current.temp_f+" F ("+response.current.temp_c+")";
+	                            let city = response.location.name+","+response.location.region+","+response.location.country;
+	                            let humadity = response.current.humidity;
+	                            let wind = response.current.wind_mph+" mph";
 
-                            let title = "Weather report of "+city;
-                            let imgUrl = "https://eimi.io/img/church_logo.jpg";
-                            let subtitle1 = "Weather is "+weather+" and wind is "+wind;
-                            let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
-							
+	                            let title = "Weather report of "+city;
+	                            let imgUrl = "https://eimi.io/img/church_logo.jpg";
+	                            let subtitle1 = "Weather is "+weather+" and wind is "+wind;
+	                            let subtitle2 = "Temprature is "+temprature+" and humadity is "+humadity;
+								
 
-                            let obj1 = {};
-                            obj1.title = title;
-                            obj1.image_url = imgUrl;
-                            obj1.subtitle = subtitle1;
-                            elements[0]=obj1;
+	                            let obj1 = {};
+	                            obj1.title = title;
+	                            obj1.image_url = imgUrl;
+	                            obj1.subtitle = subtitle1;
+	                            elements[0]=obj1;
 
-                            let obj2 = {};
-                            obj2.title = title;
-                            obj2.image_url = imgUrl;
-                            obj2.subtitle = subtitle2;
-                            elements[1]=obj2;
+	                            let obj2 = {};
+	                            obj2.title = title;
+	                            obj2.image_url = imgUrl;
+	                            obj2.subtitle = subtitle2;
+	                            elements[1]=obj2;
 
-                    		sendFBElementMessage(sender,elements);
+	                    		sendFBElementMessage(sender,elements);
+                    		}
 
                         });
 
