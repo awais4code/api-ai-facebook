@@ -247,7 +247,7 @@ function processEvent(event) {
                             if(webUrl.length>0){
                             	let url = webUrl+encodeURIComponent(query);
 		                        let subtitle = "We got the results that you want to search.";
-		                        let imgUrl = "https://eimi.io/img/Search_World.jpg";
+		                        let imgUrl = "https://eimi.io/img/search_icon.jpeg";
 		                        sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Here are results");
                             }else{
                             	sendFBMessage(sender, {text: "No Result Found"});
