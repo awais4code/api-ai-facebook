@@ -470,7 +470,7 @@ function sendFBTemplateMessage(sender, url, subtitle, imgUrl, buttonTitle, callb
                 template_type:'generic',
                 elements:[
                   {
-                    title:'Welcome to Eimi',
+                    title:'I am Eimí-Your Mobile Persona',
                     image_url:imgUrl,
                     subtitle:subtitle,
                     buttons:[
