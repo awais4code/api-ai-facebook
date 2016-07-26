@@ -296,11 +296,23 @@ function processEvent(event) {
 		                    sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
                     	}else if(storeType == "ios" || storeType == "iphone"){
                     		let webUrl = "";
-	                        let subtitle = "We got the iOS version of eimi for you.";
+	                        let subtitle = "Download Eimi from the Appstore today!!";
 	                        let imgUrl = "https://eimi.io/img/ios.png";
 	                        sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
                     	}else{
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
+                    	}
+                    }else if(action == "addReminder"){
+                    	let task = parameters.task;
+                    	if(parameters.time.length>0){
+                    		let time = parameters.time;
+                    		sendFBMessage(sender, {text: time});
+                    	}else if(parameters.date.length>0){
+                    		let date = parameters.date;
+                    		sendFBMessage(sender, {text: date});
+                    	}else if(parameters.date_time.length>0){
+                    		let date_time = parameters.date_time;
+                    		sendFBMessage(sender, {text: date_time});
                     	}
                     }else{
                         let splittedText = splitResponse(responseText);
