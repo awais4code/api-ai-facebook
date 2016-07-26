@@ -212,7 +212,7 @@ function processEvent(event) {
                             	let obj = {};
 	                            obj.title = "Not Found!";
 	                            obj.image_url = "https://eimi.io/img/oops.jpg";
-	                            obj.subtitle = "No matching location found.";
+	                            obj.subtitle = "No such movie found.";
 	                            elements[0]=obj;
 	                    		sendFBElementMessage(sender,elements);
                             }else{
