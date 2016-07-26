@@ -318,7 +318,7 @@ function processEvent(event) {
 
                     			let obj = {};
 	                            obj.title = "Not Found!";
-	                            obj.image_url = "https://eimi.io/img/church_logo.jpg";
+	                            obj.image_url = "https://eimi.io/img/oopsimage.png";
 	                            obj.subtitle = "No matching location found.";
 	                            elements[0]=obj;
 	                    		sendFBElementMessage(sender,elements);
