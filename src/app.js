@@ -209,12 +209,13 @@ function processEvent(event) {
                         .then(function(response) {
                             response = response.getBody();
                             if(response.error){
-                            	let obj = {};
-	                            obj.title = "Not Found!";
-	                            obj.image_url = "https://eimi.io/img/oops.jpg";
-	                            obj.subtitle = "No such movie found.";
-	                            elements[0]=obj;
-	                    		sendFBElementMessage(sender,elements);
+                       //      	let obj = {};
+	                      //       obj.title = "Not Found!";
+	                      //       obj.image_url = "https://eimi.io/img/oops.jpg";
+	                      //       obj.subtitle = "No such movie found.";
+	                      //       elements[0]=obj;
+	                    		// sendFBElementMessage(sender,elements);
+	                    		sendFBMessage(sender, {text: "No Result Found"});
                             }else{
                             	sendFBMovieTemplateMessage(sender,response);
                             }  
