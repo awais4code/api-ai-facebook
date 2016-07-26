@@ -209,6 +209,7 @@ function processEvent(event) {
                         .then(function(response) {
                             response = response.getBody();
                             if(response.Error){
+                            	let elements = [];
                             	let obj = {};
 	                            obj.title = "Not Found!";
 	                            obj.image_url = "https://eimi.io/img/oops.jpg";
