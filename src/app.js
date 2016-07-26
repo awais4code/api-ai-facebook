@@ -208,8 +208,16 @@ function processEvent(event) {
                         requestify.get(url)
                         .then(function(response) {
                             response = response.getBody();
-                            
-                            sendFBMovieTemplateMessage(sender,response);  
+                            if(response.error){
+                            	let obj = {};
+	                            obj.title = "Not Found!";
+	                            obj.image_url = "https://eimi.io/img/oops.jpg";
+	                            obj.subtitle = "No matching location found.";
+	                            elements[0]=obj;
+	                    		sendFBElementMessage(sender,elements);
+                            }else{
+                            	sendFBMovieTemplateMessage(sender,response);
+                            }  
                         });
                     }else if(action == "getBibleAnswer"){
                         let topic = parameters.topic;
