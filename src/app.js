@@ -224,7 +224,7 @@ function processEvent(event) {
                         let topic = parameters.topic;
                         let url = "http://www.gotquestions.org/search.php?zoom_query="+topic;
                         let subtitle = "We got answers from Bible that you want.";
-                        let imgUrl = "https://eimi.io/img/bible_questions.png";
+                        let imgUrl = "https://eimi.io/img/bible_search_icon.jpeg";
                         sendFBTemplateMessage(sender,url,subtitle,imgUrl,"Show");
                     }else if(action == "getSearchResults"){
                     	let web = parameters.web;
@@ -254,7 +254,7 @@ function processEvent(event) {
                             	let obj = {};
 	                            obj.title = "Not Found!";
 	                            obj.image_url = "https://eimi.io/img/oops.jpg";
-	                            obj.subtitle = "No matching location found.";
+	                            obj.subtitle = "No result found. Try to search something else.";
 	                            elements[0]=obj;
 	                    		sendFBElementMessage(sender,elements);
                             }
