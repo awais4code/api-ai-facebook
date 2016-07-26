@@ -215,7 +215,7 @@ function processEvent(event) {
 	                      //       obj.subtitle = "No such movie found.";
 	                      //       elements[0]=obj;
 	                    		// sendFBElementMessage(sender,elements);
-	                    		sendFBMessage(sender, {text: "No Result Found"});
+	                    		sendFBMessage(sender, {text: "No Found"});
                             }else{
                             	sendFBMovieTemplateMessage(sender,response);
                             }  
