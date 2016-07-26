@@ -303,17 +303,22 @@ function processEvent(event) {
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
                     	}
                     }else if(action == "addReminder"){
-                    	let task = parameters.task;
-                    	if(parameters.time.length>0){
-                    		let time = parameters.time;
-                    		sendFBMessage(sender, {text: time});
-                    	}else if(parameters.date.length>0){
-                    		let date = parameters.date;
-                    		sendFBMessage(sender, {text: date});
-                    	}else if(parameters.date_time.length>0){
-                    		let date_time = parameters.date_time;
-                    		sendFBMessage(sender, {text: date_time});
-                    	}
+                    	let d = new Date(); // for now
+						let h = d.getHours(); // => 9
+						let m = d.getMinutes(); // =>  30
+						let s = d.getSeconds();
+						sendFBMessage(sender, {text: h+":"+m});
+                    	// let task = parameters.task;
+                    	// if(parameters.time.length>0){
+                    	// 	let time = parameters.time;
+                    	// 	sendFBMessage(sender, {text: time});
+                    	// }else if(parameters.date.length>0){
+                    	// 	let date = parameters.date;
+                    	// 	sendFBMessage(sender, {text: date});
+                    	// }else if(parameters.date_time.length>0){
+                    	// 	let date_time = parameters.date_time;
+                    	// 	sendFBMessage(sender, {text: date_time});
+                    	// }
                     }else{
                         let splittedText = splitResponse(responseText);
 
