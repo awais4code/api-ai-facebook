@@ -127,7 +127,7 @@ function processEvent(event) {
                                 sendFBMessage(sender,{text: "No result found"});
                               }else{
                                 response = response.replace(",,","");
-                                let subtitle = "We got the sermon that you want to listen.";
+                                let subtitle = "Listen to some of your favorite Bible teachings right here!";
                                 let imgUrl = "https://eimi.io/img/church_logo.jpg";
                         		sendFBTemplateMessage(sender,response,subtitle,imgUrl,"Listen");
                               }
@@ -291,7 +291,7 @@ function processEvent(event) {
 
                     	if(storeType == "android"){
                     		let webUrl = "https://play.google.com/store/apps/details?id=ai.api.samplee";
-	                        let subtitle = "We got the android version of eimi for you.";
+	                        let subtitle = "Download Eimi from the playstore today!!";
 	                        let imgUrl = "https://eimi.io/img/android.png";
 		                    sendFBTemplateMessage(sender,webUrl,subtitle,imgUrl,"Get App");
                     	}else if(storeType == "ios" || storeType == "iphone"){
