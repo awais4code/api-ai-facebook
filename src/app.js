@@ -307,7 +307,7 @@ function processEvent(event) {
 						let h = d.getHours(); // => 9
 						let m = d.getMinutes(); // =>  30
 						let s = d.getSeconds();
-						sendFBMessage(sender, {text: h+":"+m});
+						sendFBMessage(sender, {text: d});
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
                     	// 	let time = parameters.time;
