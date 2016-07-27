@@ -366,7 +366,6 @@ function processEvent(event) {
                                     let timeArr = date_time_arr[1].split(":");
                                     reminderDate.setHours(timeArr[0]);
                                     reminderDate.setMinutes(timeArr[1]);
-                                    reminderDate.setSeconds(timeArr[2]);
 
                                     sendFBMessage(sender, {text: "Okay, I'll remind you."});
 
