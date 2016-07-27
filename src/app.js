@@ -305,13 +305,10 @@ function processEvent(event) {
                     }else if(action == "addReminder"){
                         var offset = +5;
                         let nowDate = new Date( new Date().getTime() + offset * 3600 * 1000);
-                        
-                        sendFBMessage(sender, {text: resu});
-
 
                     	let task = parameters.task;
                         let message = "Hey! You asked me to remind you for"+task;
-                        
+
                     	if(parameters.time.length>0){
 
                     		let time = parameters.time;
