@@ -313,7 +313,7 @@ function processEvent(event) {
 
                         var date = new Date();
                         date.setHours(15);
-                        date.setMinutes(14);
+                        date.setMinutes(16);
                         date.setSeconds(0);
 
                         let d1 = new Date( date.getTime() + offset * 3600 * 1000);
