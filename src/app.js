@@ -303,36 +303,54 @@ function processEvent(event) {
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
                     	}
                     }else if(action == "addReminder"){
-                        var offset = +5;
-                        let nowDate = new Date( new Date().getTime() + offset * 3600 * 1000);
+                        let url = "http://eimi.io/get_offsets.php";
+                        requestify.get(url)
+                        .then(function(response) {
+                            response = response.getBody();
+                            response = JSON.parse(response);
+                            var offset = "";
+                            for (var i = 0; i < response.length; i++) {
 
-                    	let task = parameters.task;
-                        let message = "Hey! You asked me to remind you for"+task;
+                                 let obj = response[i];
+                                 if(obj.sender == sender){
+                                    offset = obj.offset;
+                                 }
+                             }
+                             if(offset != ""){
+                                let nowDate = new Date( new Date().getTime() + offset * 3600 * 1000);
 
-                    	if(parameters.time.length>0){
+                                let task = parameters.task;
+                                let message = "Hey! You asked me to remind you "+task;
 
-                    		let time = parameters.time;
-                            let timeArr = time.split(":");
-                            let reminderDate = new Date();
-                            reminderDate.setHours(timeArr[0]);
-                            reminderDate.setMinutes(timeArr[1]);
-                            reminderDate.setSeconds(timeArr[2]);
+                                if(parameters.time.length>0){
 
-                            let reminderTime = reminderDate - nowDate;
-                            if(reminderDate<0){
+                                    let time = parameters.time;
+                                    let timeArr = time.split(":");
+                                    let reminderDate = new Date();
+                                    reminderDate.setHours(timeArr[0]);
+                                    reminderDate.setMinutes(timeArr[1]);
+                                    reminderDate.setSeconds(timeArr[2]);
+
+                                    let reminderTime = reminderDate - nowDate;
+                                    if(reminderDate<0){
+                                        sendFBMessage(sender, {text: message});
+                                    }else{
+                                        setTimeout(function() {
+                                            sendFBMessage(sender, {text: message});
+                                        }, reminderTime);
+                                    }
+                                }else if(parameters.date.length>0){
+                                    let date = parameters.date;
+                                    sendFBMessage(sender, {text: date});
+                                }else if(parameters.date_time.length>0){
+                                    let date_time = parameters.date_time;
+                                    sendFBMessage(sender, {text: date_time});
+                                }
+                             }else{
+                                let message = "I dont know about your timezone. Please let me know about your city by saying  \"My city name is YourCityName\"";
                                 sendFBMessage(sender, {text: message});
-                            }else{
-                                setTimeout(function() {
-                                    sendFBMessage(sender, {text: message});
-                                }, reminderTime);
-                            }
-                    	}else if(parameters.date.length>0){
-                    		let date = parameters.date;
-                    		sendFBMessage(sender, {text: date});
-                    	}else if(parameters.date_time.length>0){
-                    		let date_time = parameters.date_time;
-                    		sendFBMessage(sender, {text: date_time});
-                    	}
+                             } 
+                        });
                     }else{
                         let splittedText = splitResponse(responseText);
 
