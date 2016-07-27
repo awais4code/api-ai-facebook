@@ -303,7 +303,7 @@ function processEvent(event) {
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
                     	}
                     }else if(action == "addReminder"){
-                    	let d = new Date().getTimezoneOffset(); // for now
+                    	let d = new Date(); // for now
 						let h = d.getHours(); // => 9
 						let m = d.getMinutes(); // =>  30
 						let s = d.getSeconds();
