@@ -343,7 +343,15 @@ function processEvent(event) {
                                     }
                                 }else if(parameters.date.length>0){
                                     let date = parameters.date;
-                                    sendFBMessage(sender, {text: date});
+
+                                    let reminderDate = new Date(date);
+                                    reminderDate.setHours(00);
+                                    reminderDate.setMinutes(00);
+                                    reminderDate.setSeconds(00);
+
+                                    let reminderTime = reminderDate - nowDate;
+
+                                    sendFBMessage(sender, {text: reminderTime});
                                 }else if(parameters.date_time.length>0){
                                     let date_time = parameters.date_time;
                                     sendFBMessage(sender, {text: date_time});
@@ -359,27 +367,30 @@ function processEvent(event) {
                         requestify.get(url)
                         .then(function(response) {
                             response = response.getBody();
+                            if(response.error){
+                                sendFBMessage(sender,{text: "Sorry, I didn't get that. Try to say something like this \"My city name is YourCityName\""});
+                            }else{
+                                let lat = response.location.lat;
+                                let lon = response.location.lon;
 
-                            let lat = response.location.lat;
-                            let lon = response.location.lon;
+                                let url1 = "http://api.geonames.org/timezoneJSON?lat="+lat+"&lng="+lon+"&username=awais4code";
 
-                            let url1 = "http://api.geonames.org/timezoneJSON?lat="+lat+"&lng="+lon+"&username=awais4code";
-
-                            requestify.get(url1)
-                            .then(function(response) {
-                                response = response.getBody();
-                                let offset = response.dstOffset;
-
-                                let url2 = "http://eimi.io/add_offsets.php?sender="+sender+"&offset="+offset;
-
-                                requestify.get(url2)
+                                requestify.get(url1)
                                 .then(function(response) {
                                     response = response.getBody();
-                                    let message = "Thanks for recording timezone!\nNow You can ask me to remind your tasks by saying something like this \"Remind me to go to the team meeting at 4:30pm\"";
-                                    sendFBMessage(sender,{text: message});  
-                                });
+                                    let offset = response.dstOffset;
 
-                            });
+                                    let url2 = "http://eimi.io/add_offsets.php?sender="+sender+"&offset="+offset;
+
+                                    requestify.get(url2)
+                                    .then(function(response) {
+                                        response = response.getBody();
+                                        let message = "Thanks for recording timezone!\nNow You can ask me to remind your tasks by saying something like this \"Remind me to go to the team meeting at 4:30pm\"";
+                                        sendFBMessage(sender,{text: message});  
+                                    });
+
+                                });
+                        }
 
                         });
                     }else{
