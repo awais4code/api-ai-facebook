@@ -344,10 +344,10 @@ function processEvent(event) {
                                 }else if(parameters.date.length>0){
                                     let date = parameters.date;
 
-                                    let reminderDate = new Date(date);
-                                    reminderDate.setHours(00);
-                                    reminderDate.setMinutes(00);
-                                    reminderDate.setSeconds(00);
+                                    let rDate = new Date(date);
+                                    rDate.setHours(00);
+                                    rDate.setMinutes(00);
+                                    rDate.setSeconds(00);
 
                                     //let reminderTime = reminderDate - nowDate;
 
