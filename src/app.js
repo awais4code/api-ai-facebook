@@ -342,16 +342,16 @@ function processEvent(event) {
                                         }, reminderTime);
                                     }
                                 }else if(parameters.date.length>0){
-                                    let date = parameters.date;
+                                    // let date = parameters.date;
 
-                                    let reminderDate = new Date(date);
-                                    reminderDate.setHours(00);
-                                    reminderDate.setMinutes(00);
-                                    reminderDate.setSeconds(00);
+                                    // let reminderDate = new Date(date);
+                                    // reminderDate.setHours(00);
+                                    // reminderDate.setMinutes(00);
+                                    // reminderDate.setSeconds(00);
 
-                                    let rTime = reminderDate - nowDate;
+                                    // let rTime = reminderDate - nowDate;
 
-                                    sendFBMessage(sender, {text: rTime});
+                                    sendFBMessage(sender, {text: "rTime"});
                                 }else if(parameters.date_time.length>0){
                                     let date_time = parameters.date_time;
                                     sendFBMessage(sender, {text: date_time});
