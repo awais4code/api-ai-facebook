@@ -303,10 +303,12 @@ function processEvent(event) {
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
                     	}
                     }else if(action == "addReminder"){
-                    	let d = new Date(); // for now
-						let h = d.getHours(); // => 9
-						let m = d.getMinutes(); // =>  30
-						let s = d.getSeconds();
+      //               	let d = new Date(); // for now
+						// let h = d.getHours(); // => 9
+						// let m = d.getMinutes(); // =>  30
+						// let s = d.getSeconds();
+                        var offset = -8;
+                        let d = new Date( new Date().getTime() + offset * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
 						sendFBMessage(sender, {text: d});
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
