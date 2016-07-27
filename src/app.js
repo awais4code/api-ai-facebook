@@ -312,12 +312,12 @@ function processEvent(event) {
 						sendFBMessage(sender, {text: d});
                         let t1 = d.getTime();
 
-                        let d1 = new Date();
+                        let date = new Date();
                         date.setHours(16);
-                        date.setMinutes(43);
+                        date.setMinutes(45);
                         date.setSeconds(0);
 
-                        let res = Math.abs(d1-d);
+                        let res = Math.abs(date - d);
 
 
                         sendFBMessage(sender, {text: res});
