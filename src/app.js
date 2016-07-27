@@ -369,7 +369,7 @@ function processEvent(event) {
 
                                     sendFBMessage(sender, {text: "Okay, I'll remind you."});
 
-                                    let reminderTime = reminderDate - nowDate;
+                                    let rTime = reminderDate - nowDate;
 
                                     sendFBMessage(sender, {text: reminderDate});
 
