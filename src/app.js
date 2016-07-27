@@ -319,9 +319,11 @@ function processEvent(event) {
 
                         let res = Math.abs(date - d);
 
-                        setTimeout(function() {
-                            sendFBMessage(sender, {text: "You asked me to remind."});
-                        }, res);
+                        // setTimeout(function() {
+                        //     sendFBMessage(sender, {text: "You asked me to remind."});
+                        // }, res);
+                        sendFBMessage(sender, {text: res});
+
 
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
