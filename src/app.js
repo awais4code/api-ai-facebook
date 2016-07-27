@@ -366,7 +366,7 @@ function processEvent(event) {
 
                                     let reminderTime = reminderDate - nowDate;
 
-                                    sendFBMessage(sender, {text: reminderTime});
+                                    sendFBMessage(sender, {text: reminderDate});
 
                                     // setTimeout(function() {
                                     //     sendFBMessage(sender, {text: message});
