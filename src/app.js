@@ -317,7 +317,7 @@ function processEvent(event) {
                         date.setMinutes(21);
                         date.setSeconds(0);
 
-                        let d1 = new Date( date.getTime() + offset * 3600 * 1000);
+                        //let d1 = new Date( date.getTime() + offset * 3600 * 1000);
 
                         sendFBMessage(sender, {text: date});
 
