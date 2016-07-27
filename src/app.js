@@ -309,15 +309,20 @@ function processEvent(event) {
 						// let s = d.getSeconds();
                         var offset = +5;
                         let d = new Date( new Date().getTime() + offset * 3600 * 1000);
-						sendFBMessage(sender, {text: d.getTime()});
+						//sendFBMessage(sender, {text: d.getTime()});
+                        let t1 = d.getTime();
 
                         let date = new Date();
                         date.setHours(15);
-                        date.setMinutes(20);
+                        date.setMinutes(26);
                         date.setSeconds(0);
 
                         let d1 = new Date( date.getTime() + offset * 3600 * 1000);
-                        sendFBMessage(sender, {text: "r:"+d1.getTime()});
+                        let t2 = d1.getTime();
+
+                        let r = t2-t1;
+
+                        sendFBMessage(sender, {text: r});
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
                     	// 	let time = parameters.time;
