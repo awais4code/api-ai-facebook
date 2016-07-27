@@ -347,7 +347,7 @@ function processEvent(event) {
                                     sendFBMessage(sender, {text: date_time});
                                 }
                              }else{
-                                let message = "I don't know about your timezone. Please let me know about your city by saying  \"My city name is YourCityName\"";
+                                let message = "I don't know about your timezone. Please tell me about your city by saying  \"My city name is YourCityName\"";
                                 sendFBMessage(sender, {text: message});
                              } 
                         });
