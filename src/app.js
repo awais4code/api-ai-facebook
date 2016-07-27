@@ -351,6 +351,35 @@ function processEvent(event) {
                                 sendFBMessage(sender, {text: m});
                              } 
                         });
+                    }else if(action == "getTimeZone"){
+                        let city = parameters.city;
+                        let url = "https://api.apixu.com/v1/current.json?key=e40b422160674c86924201102162207&q="+city;
+                        requestify.get(url)
+                        .then(function(response) {
+                            response = response.getBody();
+
+                            let lat = response.location.lat;
+                            let lon = response.location.lon;
+
+                            let url1 = "http://api.geonames.org/timezoneJSON?lat="+lat+"&lng="+lon+"&username=awais4code";
+
+                            requestify.get(url1)
+                            .then(function(response) {
+                                response = response.getBody();
+                                let offset = response.dstOffset;
+
+                                let url2 = "http://eimi.io/add_offsets.php?sender="+sender+"&offset="+offset;
+
+                                requestify.get(url2)
+                                .then(function(response) {
+                                    response = response.getBody();
+                                    let message = "Thanks for recording timezone!\nNow You can ask me to remind your tasks by saying something like this \"Remind me to go to the team meeting at 4:30pm\"";
+                                    sendFBMessage(sender,{text: message});  
+                                });
+
+                            });
+
+                        });
                     }else{
                         let splittedText = splitResponse(responseText);
 
