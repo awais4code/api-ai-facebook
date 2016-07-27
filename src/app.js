@@ -303,39 +303,39 @@ function processEvent(event) {
                     		sendFBMessage(sender, {text: "I'm still learning about that myself. As soon as I know, you'll know."});
                     	}
                     }else if(action == "addReminder"){
-      //               	let d = new Date(); // for now
-						// let h = d.getHours(); // => 9
-						// let m = d.getMinutes(); // =>  30
-						// let s = d.getSeconds();
                         var offset = +5;
-                        let d = new Date( new Date().getTime() + offset * 3600 * 1000);
-						//sendFBMessage(sender, {text: d});
-                        let t1 = d.getTime();
-
-                        let date = new Date();
-                        date.setHours(16);
-                        date.setMinutes(48);
-                        date.setSeconds(0);
-
-                        let resu = date - d;
-
-                        // setTimeout(function() {
-                        //     sendFBMessage(sender, {text: "You asked me to remind."});
-                        // }, res);
+                        let nowDate = new Date( new Date().getTime() + offset * 3600 * 1000);
+                        
                         sendFBMessage(sender, {text: resu});
 
 
-                    	// let task = parameters.task;
-                    	// if(parameters.time.length>0){
-                    	// 	let time = parameters.time;
-                    	// 	sendFBMessage(sender, {text: time});
-                    	// }else if(parameters.date.length>0){
-                    	// 	let date = parameters.date;
-                    	// 	sendFBMessage(sender, {text: date});
-                    	// }else if(parameters.date_time.length>0){
-                    	// 	let date_time = parameters.date_time;
-                    	// 	sendFBMessage(sender, {text: date_time});
-                    	// }
+                    	let task = parameters.task;
+                        let message = "Hey! You asked me to remind you for"+task;
+                        
+                    	if(parameters.time.length>0){
+
+                    		let time = parameters.time;
+                            let timeArr = time.split(":");
+                            let reminderDate = new Date();
+                            reminderDate.setHours(timeArr[0]);
+                            reminderDate.setMinutes(timeArr[1]);
+                            reminderDate.setSeconds(timeArr[2]);
+
+                            let reminderTime = reminderDate - nowDate;
+                            if(reminderDate<0){
+                                sendFBMessage(sender, {text: message});
+                            }else{
+                                setTimeout(function() {
+                                    sendFBMessage(sender, {text: message});
+                                }, reminderTime);
+                            }
+                    	}else if(parameters.date.length>0){
+                    		let date = parameters.date;
+                    		sendFBMessage(sender, {text: date});
+                    	}else if(parameters.date_time.length>0){
+                    		let date_time = parameters.date_time;
+                    		sendFBMessage(sender, {text: date_time});
+                    	}
                     }else{
                         let splittedText = splitResponse(responseText);
 
