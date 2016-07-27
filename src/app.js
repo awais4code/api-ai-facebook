@@ -314,7 +314,7 @@ function processEvent(event) {
 
                         let date = new Date();
                         date.setHours(16);
-                        date.setMinutes(14);
+                        date.setMinutes(21);
                         date.setSeconds(0);
 
                         let d1 = new Date( date.getTime() + offset * 3600 * 1000);
