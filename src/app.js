@@ -356,10 +356,21 @@ function processEvent(event) {
                                     setTimeout(function() {
                                         sendFBMessage(sender, {text: message});
                                     }, reminderTime);
-                                    
+
                                 }else if(parameters.date_time.length>0){
                                     let date_time = parameters.date_time;
-                                    sendFBMessage(sender, {text: date_time});
+                                    
+                                    let reminderDate = new Date(date_time);
+
+                                    sendFBMessage(sender, {text: "Okay, I'll remind you."});
+
+                                    let reminderTime = reminderDate - nowDate;
+
+                                    sendFBMessage(sender, {text: reminderTime});
+
+                                    // setTimeout(function() {
+                                    //     sendFBMessage(sender, {text: message});
+                                    // }, reminderTime);
                                 }
                              }else{
                                 let m = "I don't know about your timezone. Please tell me about your city by saying  \"My city name is YourCityName\"";
