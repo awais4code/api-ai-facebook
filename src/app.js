@@ -360,7 +360,8 @@ function processEvent(event) {
                                 }else if(parameters.date_time.length>0){
                                     let date_time = parameters.date_time;
                                     
-                                    let reminderDate = new Date(date_time);
+                                    var reminderDate = new Date(date_time);
+                                    reminderDate = new Date( reminderDate.getTime() + offset * 3600 * 1000);
 
                                     sendFBMessage(sender, {text: "Okay, I'll remind you."});
 
