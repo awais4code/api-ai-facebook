@@ -317,12 +317,12 @@ function processEvent(event) {
                         date.setMinutes(48);
                         date.setSeconds(0);
 
-                        let res = Math.abs(date - d);
+                        let resu = date - d;
 
                         // setTimeout(function() {
                         //     sendFBMessage(sender, {text: "You asked me to remind."});
                         // }, res);
-                        sendFBMessage(sender, {text: res});
+                        sendFBMessage(sender, {text: resu});
 
 
                     	// let task = parameters.task;
