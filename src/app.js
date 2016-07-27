@@ -309,7 +309,7 @@ function processEvent(event) {
 						// let s = d.getSeconds();
                         var offset = +5;
                         let d = new Date( new Date().getTime() + offset * 3600 * 1000);
-						sendFBMessage(sender, {text: d});
+						sendFBMessage(sender, {text: d.getMilliseconds()});
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
                     	// 	let time = parameters.time;
