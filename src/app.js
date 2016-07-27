@@ -309,18 +309,19 @@ function processEvent(event) {
 						// let s = d.getSeconds();
                         var offset = +5;
                         let d = new Date( new Date().getTime() + offset * 3600 * 1000);
-						sendFBMessage(sender, {text: d});
+						//sendFBMessage(sender, {text: d});
                         let t1 = d.getTime();
 
                         let date = new Date();
                         date.setHours(16);
-                        date.setMinutes(45);
+                        date.setMinutes(48);
                         date.setSeconds(0);
 
                         let res = Math.abs(date - d);
 
-
-                        sendFBMessage(sender, {text: res});
+                        setTimeout(function() {
+                            sendFBMessage(sender, {text: "You asked me to remind."});
+                        }, res);
 
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
