@@ -310,8 +310,14 @@ function processEvent(event) {
                         var offset = +5;
                         let d = new Date( new Date().getTime() + offset * 3600 * 1000);
 						sendFBMessage(sender, {text: d.getMilliseconds()});
-                        let d1 = new Date();
-                        sendFBMessage(sender, {text: d1.getTime()});
+
+                        var date = new Date();
+                        date.setHours(14);
+                        date.setMinutes(50);
+                        date.setSeconds(55);
+
+                        let d1 = new Date( date + offset * 3600 * 1000);
+                        sendFBMessage(sender, {text: "rem:"+d1.getMilliseconds()});
                     	// let task = parameters.task;
                     	// if(parameters.time.length>0){
                     	// 	let time = parameters.time;
