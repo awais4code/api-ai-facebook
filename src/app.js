@@ -371,11 +371,9 @@ function processEvent(event) {
 
                                     let reminderTime = reminderDate - nowDate;
 
-                                    sendFBMessage(sender, {text: reminderTime});
-
-                                    // setTimeout(function() {
-                                    //     sendFBMessage(sender, {text: message});
-                                    // }, reminderTime);
+                                    setTimeout(function() {
+                                        sendFBMessage(sender, {text: message});
+                                    }, reminderTime);
                                 }
                              }else{
                                 let m = "I don't know about your timezone. Please tell me about your city by saying  \"My city name is YourCityName\"";
