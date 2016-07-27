@@ -344,14 +344,14 @@ function processEvent(event) {
                                 }else if(parameters.date.length>0){
                                     let date = parameters.date;
 
-                                    let rDate = new Date(date);
-                                    rDate.setHours(00);
-                                    rDate.setMinutes(00);
-                                    rDate.setSeconds(00);
+                                    let reminderDate = new Date(date);
+                                    reminderDate.setHours(0);
+                                    reminderDate.setMinutes(0);
+                                    reminderDate.setSeconds(0);
 
-                                    //let reminderTime = reminderDate - nowDate;
+                                    let reminderTime = reminderDate - nowDate;
 
-                                    sendFBMessage(sender, {text: reminderDate});
+                                    sendFBMessage(sender, {text: reminderTime});
                                 }else if(parameters.date_time.length>0){
                                     let date_time = parameters.date_time;
                                     sendFBMessage(sender, {text: date_time});
