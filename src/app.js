@@ -342,7 +342,7 @@ function processEvent(event) {
                                     }else{
                                         reminderTime = reminderTime/1000;
                                         var task = cron.schedule('*/'+reminderTime+' * * * * *', function(){
-                                            console.log('running a task every minute');
+                                            sendFBMessage(sender, {text: message});
                                             task.destroy();
                                         });
                                     }
