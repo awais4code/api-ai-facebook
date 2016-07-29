@@ -341,14 +341,14 @@ function processEvent(event) {
                                         sendFBMessage(sender, {text: message});
                                     }else{
                                         //reminderTime = reminderTime/1000;
-                                        var job = new CronJob('00 58 23 * * *', function() {
+                                        var job = new CronJob('00 2 14 * * *', function() {
                                             sendFBMessage(sender, {text: message});
                                             job.stop();
                                         }, function(){
 
                                         },
                                         true,
-                                        "Asia/Karachi"
+                                        "America/Chicago"
                                         );
                                     }
                                 }else if(parameters.date.length>0){
