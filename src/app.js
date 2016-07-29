@@ -310,11 +310,13 @@ function processEvent(event) {
                             response = response.getBody();
                             response = JSON.parse(response);
                             var offset = "";
+                            var timezone = "";
                             for (var i = 0; i < response.length; i++) {
 
                                  let obj = response[i];
                                  if(obj.sender == sender){
                                     offset = obj.offset;
+                                    timezone = obj.timezone;
                                  }
                              }
                              if(offset != ""){
@@ -349,7 +351,7 @@ function processEvent(event) {
 
                                         },
                                         true,
-                                        "Asia/Karachi"
+                                        timezone
                                         );
                                     }
                                 }else if(parameters.date.length>0){
@@ -375,7 +377,7 @@ function processEvent(event) {
 
                                         },
                                         true,
-                                        "Asia/Karachi"
+                                        timezone
                                         );
 
                                 }else if(parameters.date_time.length>0){
@@ -406,7 +408,7 @@ function processEvent(event) {
 
                                         },
                                         true,
-                                        "Asia/Karachi"
+                                        timezone
                                         );
                                 }
                              }else{
@@ -432,8 +434,9 @@ function processEvent(event) {
                                 .then(function(response) {
                                     response = response.getBody();
                                     let offset = response.dstOffset;
+                                    let timezone = response.timezoneId;
 
-                                    let url2 = "http://eimi.io/add_offsets.php?sender="+sender+"&offset="+offset;
+                                    let url2 = "http://eimi.io/add_offsets.php?sender="+sender+"&offset="+offset+"&timezone="+timezone;
 
                                     requestify.get(url2)
                                     .then(function(response) {
