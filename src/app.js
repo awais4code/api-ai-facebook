@@ -354,19 +354,29 @@ function processEvent(event) {
                                     }
                                 }else if(parameters.date.length>0){
                                     let date = parameters.date;
+                                    let dateArr = time.split("-");
+
+                                    var month = dateArr[1];
+                                    let day = dateArr[2];
+
+                                    month = parseInt(month)-1;
 
                                     let reminderDate = new Date(date);
                                     reminderDate.setHours(0);
                                     reminderDate.setMinutes(0);
                                     reminderDate.setSeconds(0);
 
-                                    sendFBMessage(sender, {text: reminderDate});
+                                    sendFBMessage(sender, {text: day+":"+month});
 
-                                    let reminderTime = reminderDate - nowDate;
+                                    var job = new CronJob('00 00 00 '+day+' '+month+' *', function() {
+                                            sendFBMessage(sender, {text: message});
+                                            job.stop();
+                                        }, function(){
 
-                                    setTimeout(function() {
-                                        sendFBMessage(sender, {text: message});
-                                    }, reminderTime);
+                                        },
+                                        true,
+                                        "Asia/Karachi"
+                                        );
 
                                 }else if(parameters.date_time.length>0){
                                     let date_time = parameters.date_time;
