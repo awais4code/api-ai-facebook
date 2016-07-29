@@ -8,6 +8,7 @@ const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
 const requestify = require('requestify');
+const cron = require('node-cron');
 
 const REST_PORT = (process.env.PORT || 5000);
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
@@ -335,13 +336,15 @@ function processEvent(event) {
 
                                     sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toLocaleString()});
 
-                                    let reminderTime = reminderDate - nowDate;
+                                    var reminderTime = reminderDate - nowDate;
                                     if(reminderDate<0){
                                         sendFBMessage(sender, {text: message});
                                     }else{
-                                        setTimeout(function() {
-                                            sendFBMessage(sender, {text: message});
-                                        }, reminderTime);
+                                        reminderTime = reminderTime/1000;
+                                        var task = cron.schedule('*/'+reminderTime+' * * * * *', function(){
+                                            console.log('running a task every minute');
+                                            task.destroy();
+                                        });
                                     }
                                 }else if(parameters.date.length>0){
                                     let date = parameters.date;

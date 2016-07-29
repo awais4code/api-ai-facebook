@@ -18,7 +18,8 @@
     "json-bigint": "^0.2.0",
     "node-uuid": "^1.4.7",
     "request": "^2.71.0",
-    "requestify": "^0.1.17"
+    "requestify": "^0.1.17",
+    "node-cron": "^1.1.1"
   },
   "repository": {
     "type": "git",
