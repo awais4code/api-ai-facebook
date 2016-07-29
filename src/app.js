@@ -340,7 +340,8 @@ function processEvent(event) {
                                     if(reminderDate<0){
                                         sendFBMessage(sender, {text: message});
                                     }else{
-                                        reminderTime = reminderTime/1000;
+                                        //reminderTime = reminderTime/1000;
+                                        reminderTime = 120;
                                         let schedule = cron.schedule('*/'+reminderTime+' * * * * *', function(){
                                             sendFBMessage(sender, {text: message});
                                             schedule.destroy();
