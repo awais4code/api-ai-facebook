@@ -382,19 +382,32 @@ function processEvent(event) {
                                     let date_time = parameters.date_time;
 
                                     let date_time_arr = date_time.split("T");
+
+                                    let dateArr = date_time_arr[0].split("-");
+
+                                    var month = dateArr[1];
+                                    let day = dateArr[2];
+
+                                    month = parseInt(month)-1;
                                     
                                     let reminderDate = new Date(date_time_arr[0]);
                                     let timeArr = date_time_arr[1].split(":");
-                                    reminderDate.setHours(timeArr[0]);
-                                    reminderDate.setMinutes(timeArr[1]);
+                                    let hours = timeArr[0];
+                                    let minutes = timeArr[1];
+                                    reminderDate.setHours(hours);
+                                    reminderDate.setMinutes(minutes);
 
                                     sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toLocaleString()});
 
-                                    let reminderTime = reminderDate - nowDate;
+                                    var job = new CronJob('00 '+minutes+' '+hours+' '+day+' '+month+' *', function() {
+                                            sendFBMessage(sender, {text: message});
+                                            job.stop();
+                                        }, function(){
 
-                                    setTimeout(function() {
-                                        sendFBMessage(sender, {text: message});
-                                    }, reminderTime);
+                                        },
+                                        true,
+                                        "Asia/Karachi"
+                                        );
                                 }
                              }else{
                                 let m = "I don't know about your timezone. Please tell me about your city by saying  \"My city name is YourCityName\"";
