@@ -351,7 +351,7 @@ function processEvent(event) {
                                     reminderDate.setMinutes(0);
                                     reminderDate.setSeconds(0);
 
-                                    sendFBMessage(sender, {text: "Okay, I'll remind you."});
+                                    sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toLocaleString()});
 
                                     let reminderTime = reminderDate - nowDate;
 
@@ -369,7 +369,7 @@ function processEvent(event) {
                                     reminderDate.setHours(timeArr[0]);
                                     reminderDate.setMinutes(timeArr[1]);
 
-                                    sendFBMessage(sender, {text: "Okay, I'll remind you."});
+                                    sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toLocaleString()});
 
                                     let reminderTime = reminderDate - nowDate;
 
