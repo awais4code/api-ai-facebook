@@ -341,7 +341,7 @@ function processEvent(event) {
                                         sendFBMessage(sender, {text: message});
                                     }else{
                                         //reminderTime = reminderTime/1000;
-                                        var job = new CronJob('00 55 23 * * *', function() {
+                                        var job = new CronJob('00 58 23 * * *', function() {
                                             sendFBMessage(sender, {text: message});
                                             job.stop();
                                         }, function(){
