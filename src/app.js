@@ -341,9 +341,9 @@ function processEvent(event) {
                                         sendFBMessage(sender, {text: message});
                                     }else{
                                         reminderTime = reminderTime/1000;
-                                        var task = cron.schedule('*/'+reminderTime+' * * * * *', function(){
+                                        let schedule = cron.schedule('*/'+reminderTime+' * * * * *', function(){
                                             sendFBMessage(sender, {text: message});
-                                            task.destroy();
+                                            schedule.destroy();
                                         });
                                     }
                                 }else if(parameters.date.length>0){
