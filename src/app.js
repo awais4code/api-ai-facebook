@@ -333,7 +333,7 @@ function processEvent(event) {
 
 
 
-                                    sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate});
+                                    sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toUTCString()});
 
                                     let reminderTime = reminderDate - nowDate;
                                     if(reminderDate<0){
