@@ -334,7 +334,7 @@ function processEvent(event) {
 
 
 
-                                    sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toLocaleString()});
+                                    sendFBMessage(sender, {text: time});
 
                                     var reminderTime = reminderDate - nowDate;
                                     if(reminderDate<0){
