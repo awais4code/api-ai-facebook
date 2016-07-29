@@ -354,7 +354,7 @@ function processEvent(event) {
                                     }
                                 }else if(parameters.date.length>0){
                                     let date = parameters.date;
-                                    let dateArr = time.split("-");
+                                    let dateArr = date.split("-");
 
                                     var month = dateArr[1];
                                     let day = dateArr[2];
