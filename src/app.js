@@ -329,7 +329,7 @@ function processEvent(event) {
                                     let timeArr = time.split(":");
                                     let hours = timeArr[0];
                                     let minutes = timeArr[1];
-                                    let reminderDate = new Date();
+                                    let reminderDate = new Date(new Date().getTime() + offset * 3600 * 1000);
                                     reminderDate.setHours(timeArr[0]);
                                     reminderDate.setMinutes(timeArr[1]);
                                     reminderDate.setSeconds(timeArr[2]);
