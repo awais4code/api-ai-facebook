@@ -327,6 +327,8 @@ function processEvent(event) {
 
                                     let time = parameters.time;
                                     let timeArr = time.split(":");
+                                    let hours = timeArr[0];
+                                    let minutes = timeArr[1];
                                     let reminderDate = new Date();
                                     reminderDate.setHours(timeArr[0]);
                                     reminderDate.setMinutes(timeArr[1]);
@@ -341,14 +343,14 @@ function processEvent(event) {
                                         sendFBMessage(sender, {text: message});
                                     }else{
                                         //reminderTime = reminderTime/1000;
-                                        var job = new CronJob('00 2 14 * * *', function() {
+                                        var job = new CronJob('00 '+minutes+' '+hours+' * * *', function() {
                                             sendFBMessage(sender, {text: message});
                                             job.stop();
                                         }, function(){
 
                                         },
                                         true,
-                                        "America/Chicago"
+                                        "Asia/Karachi"
                                         );
                                     }
                                 }else if(parameters.date.length>0){
