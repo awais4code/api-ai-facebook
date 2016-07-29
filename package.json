@@ -19,6 +19,7 @@
     "node-uuid": "^1.4.7",
     "request": "^2.71.0",
     "requestify": "^0.1.17",
+    "cron": "^1.1.0",
     "node-cron": "^1.1.1"
   },
   "repository": {
