@@ -366,7 +366,7 @@ function processEvent(event) {
                                     reminderDate.setMinutes(0);
                                     reminderDate.setSeconds(0);
 
-                                    sendFBMessage(sender, {text: day+":"+month});
+                                    sendFBMessage(sender, {text: "Okay, I'll remind you at "+reminderDate.toLocaleString()});
 
                                     var job = new CronJob('00 00 00 '+day+' '+month+' *', function() {
                                             sendFBMessage(sender, {text: message});
