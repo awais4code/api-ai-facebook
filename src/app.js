@@ -9,6 +9,8 @@ const JSONbig = require('json-bigint');
 const async = require('async');
 const requestify = require('requestify');
 const CronJob = require('cron').CronJob;
+const http = require("http");
+
 
 const REST_PORT = (process.env.PORT || 5000);
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
@@ -35,6 +37,11 @@ function isMathEq(query) {
     }
     return false;
 }
+
+/*for keeping app alive */
+setInterval(function() {
+    http.get("http://eimi.herokuapp.com");
+}, 300000);
 
 function processEvent(event) {
     var sender = event.sender.id.toString();
