@@ -448,8 +448,7 @@ function processEvent(event) {
                                     requestify.get(url2)
                                     .then(function(response) {
                                         response = response.getBody();
-                                        let message = "";
-                                        sendFBMessage(sender,{text: message});  
+                                        sendFBMessage(sender,{text: response});  
                                     });
 
                                 });
