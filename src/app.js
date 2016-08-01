@@ -465,6 +465,13 @@ function processEvent(event) {
                             sendFBMessage(sender, {text: textPart}, callback);
                         });  
 
+                    }else if(action == "doMoreHelp"){
+                        let message = "★ Need some encouragement (type 'I need some encouragement'),\n\n★ Want to listen to a song on soundcloud  (type 'look something up' then 'soundcloud'),\n\n★ Need a movie review or want to see a movie trailer (type 'movie review or movie trailer'),\n\n★ Want me to remember something (type something like 'remind me to call home at 3:30pm'),\nI think you get the point? =)";
+                        let splittedText = splitResponse(message);
+
+                        async.eachSeries(splittedText, (textPart, callback) => {
+                            sendFBMessage(sender, {text: textPart}, callback);
+                        });  
                     }else{
                         let splittedText = splitResponse(responseText);
 
