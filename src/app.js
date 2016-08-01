@@ -448,7 +448,7 @@ function processEvent(event) {
                                     requestify.get(url2)
                                     .then(function(response) {
                                         response = response.getBody();
-                                        let message = "Thanks for recording timezone!\nNow You can ask me to remind your tasks by saying something like this \"Remind me to go to the team meeting at 4:30pm\"";
+                                        let message = "";
                                         sendFBMessage(sender,{text: message});  
                                     });
 
