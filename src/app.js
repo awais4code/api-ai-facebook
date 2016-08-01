@@ -456,6 +456,11 @@ function processEvent(event) {
                         }
 
                         });
+                    }else if(action == "doHelp"){
+
+                        let message = "★ Have a Bible Question (type 'search the Bible'),\n★ Want me to search the web (type look something up'),\n★ Need a verse for the day (type 'verse of the day'),\n★ Need to help someone find a resource (type 'access citylink'),\n★ Want to read the bible (type 'read the Bible'),\n★ Want to listen to a sermon (type 'listen to a sermon').\nIf you need more, type 'more tasks'. =)";
+                        sendFBMessage(sender,{text: message});  
+
                     }else{
                         let splittedText = splitResponse(responseText);
 
