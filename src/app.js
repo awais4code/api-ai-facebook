@@ -458,7 +458,7 @@ function processEvent(event) {
                         });
                     }else if(action == "doHelp"){
 
-                        let message = "★ Have a Bible Question (type 'search the Bible'),\n\n★ Want me to search the web (type look something up'),\n\n★ Need a verse for the day (type 'verse of the day'),\n\n★ Need to help someone find a resource (type 'access citylink'),\n\n★ Want to read the bible (type 'read the Bible'),\n\n★ Want to listen to a sermon (type 'listen to a sermon').\nIf you need more, type 'more tasks'. =)";
+                        let message = "★ Have a Bible Question (type 'search the Bible'),\n\n★ Want me to search the web (type look something up'),\n\n★ Need a verse for the day (type 'verse of the day'),\n\n★ Need to help someone find a resource (type 'access citylink'),\n\n★ Want to read the bible (type 'read the Bible'),\n\n★ Want to listen to a sermon (type 'listen to a sermon').\n\n★ Have a mathematical question (type something like 'solve 3x+5=10' OR 'how much is 100 divided by 5' )\n\n★ Want to read news (type 'recent news') \nIf you need more, type 'more tasks'. =)";
                         let splittedText = splitResponse(message);
 
                         async.eachSeries(splittedText, (textPart, callback) => {
@@ -466,7 +466,7 @@ function processEvent(event) {
                         });  
 
                     }else if(action == "doMoreHelp"){
-                        let message = "★ Need some encouragement (type 'I need some encouragement'),\n\n★ Want to listen to a song on soundcloud  (type 'look something up' then 'soundcloud'),\n\n★ Need a movie review or want to see a movie trailer (type 'movie review or movie trailer'),\n\n★ Want me to remember something (type something like 'remind me to call home at 3:30pm'),\n\n★ Need weather report (type 'Whats the weather in London')\nI think you get the point? =)";
+                        let message = "★ Need some encouragement (type 'I need some encouragement'),\n\n★ Want to listen to a song on soundcloud  (type 'look something up' then 'soundcloud'),\n\n★ Need a movie review or want to see a movie trailer (type 'movie review or movie trailer'),\n\n★ Want me to remember something (type something like 'remind me to call home at 3:30pm'),\n\n★ Need weather report (type something like 'Whats the weather in London')\n\n★ Need planets calculation (type something like 'How far is sun from moon' OR 'how big is moon')\nI think you get the point? =)";
                         let splittedText = splitResponse(message);
 
                         async.eachSeries(splittedText, (textPart, callback) => {
