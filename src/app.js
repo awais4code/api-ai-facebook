@@ -76,7 +76,7 @@ function processEvent(event) {
                 let parameters = response.result.parameters;
                 let resolvedQuery = response.result.resolvedQuery;
 
-                console.log("responseText: "+response);
+                console.log("responseText: "+JSON.stringify(response));
 
 
                 // facebook API limit for text length is 320,
