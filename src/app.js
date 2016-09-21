@@ -539,16 +539,16 @@ function processEvent(event) {
                         });
 
                     }else{
-                        if(responseText.length>0){
+                       // if(responseText.length>0){
                             let splittedText = splitResponse(responseText);
 
                             async.eachSeries(splittedText, (textPart, callback) => {
                                 sendFBMessage(sender, {text: textPart}, callback);
                             });
-                        }else{
-                            let respText = "I'm still learning about that myself. As soon as I know, you'll know.";
-                            sendFBMessage(sender, {text: respText});
-                        }
+                       // }else{
+                            // let respText = "I'm still learning about that myself. As soon as I know, you'll know.";
+                            // sendFBMessage(sender, {text: respText});
+                      //  }
                     }
                 }
 
